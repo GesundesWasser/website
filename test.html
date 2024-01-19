@@ -14,17 +14,24 @@
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" required><br>
 
-    <button type="button" onclick="checkPassword()">Submit</button>
+    <button type="button" onclick="checkCredentials()">Submit</button>
 </form>
 
 <p id="successMessage" style="display:none;">Login successful!</p>
+<p id="errorMessage" style="display:none;">Incorrect username or password. Please try again.</p>
 
 <script>
-    function checkPassword() {
+    function checkCredentials() {
+        var enteredUsername = document.getElementById("username").value;
         var enteredPassword = document.getElementById("password").value;
-        // Replace 'yourPassword' with the actual correct password
-        if (enteredPassword === "yourPassword") {
+        
+        // Replace 'yourUsername' and 'yourPassword' with the actual correct credentials
+        if (enteredUsername === "yourUsername" && enteredPassword === "yourPassword") {
             document.getElementById("successMessage").style.display = "block";
+            document.getElementById("errorMessage").style.display = "none";
+        } else {
+            document.getElementById("successMessage").style.display = "none";
+            document.getElementById("errorMessage").style.display = "block";
         }
     }
 </script>
