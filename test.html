@@ -3,30 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Code Generator</title>
+    <title>Password Entry</title>
 </head>
 <body>
 
-    <h1>Generated Code: <span id="generatedCode"></span></h1>
+<form>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br>
 
-    <script>
-        function generateRandomCode() {
-            const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            const randomLetter1 = alphabet[Math.floor(Math.random() * alphabet.length)];
-            const randomLetter2 = alphabet[Math.floor(Math.random() * alphabet.length)];
-            
-            const randomNumber1 = Math.floor(Math.random() * 10);
-            const randomNumber2 = Math.floor(Math.random() * 10);
-            const randomNumber3 = Math.floor(Math.random() * 10);
-            const randomNumber4 = Math.floor(Math.random() * 10);
-            
-            const randomCode = `${randomLetter1}${randomNumber1}${randomLetter2}${randomNumber2}${randomNumber3}${randomLetter1}-${randomNumber4}${randomLetter2}${randomNumber1}${randomLetter1}${randomNumber3}${randomLetter2}${randomNumber4}${randomLetter1}${randomLetter2}${randomNumber1}`;
-            
-            return randomCode;
-        }
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br>
 
-        document.getElementById('generatedCode').innerText = generateRandomCode();
-    </script>
-
-</body>
-</html>
+    <input type="submit" value="Submit">
+</⬤
