@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number and Letter Generator</title>
+</head>
+<body>
+
+    <h1>Random Number: <span id="randomNumber"></span></h1>
+    <h1>Random Letter: <span id="randomLetter"></span></h1>
+
+    <script>
+        function generateRandomNumber() {
+            return Math.floor(Math.random() * 100); // Adjust the range as needed
+        }
+
+        function generateRandomLetter() {
+            const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const randomIndex = Math.floor(Math.random() * alphabet.length);
+            return alphabet[randomIndex];
+        }
+
+        document.getElementById('randomNumber').innerText = generateRandomNumber();
+        document.getElementById('randomLetter').innerText = generateRandomLetter();
+    </script>
+
+</body>
+</html>
