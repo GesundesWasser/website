@@ -7,12 +7,27 @@
 </head>
 <body>
 
-<form>
+<form id="loginForm">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required><br>
 
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" required><br>
 
-    <input type="submit" value="Submit">
-</⬤
+    <button type="button" onclick="checkPassword()">Submit</button>
+</form>
+
+<p id="successMessage" style="display:none;">Login successful!</p>
+
+<script>
+    function checkPassword() {
+        var enteredPassword = document.getElementById("password").value;
+        // Replace 'yourPassword' with the actual correct password
+        if (enteredPassword === "yourPassword") {
+            document.getElementById("successMessage").style.display = "block";
+        }
+    }
+</script>
+
+</body>
+</html>
