@@ -132,10 +132,40 @@
         <img src="img/product-keys.png" alt="Bild von Product Keys">
         <h2>Winwows Product Keys</h2>
         <p>TEXT</p>
-        <button disabled>Coming Soon...</button>
+        <button class="generate-code" onclick="generateCode()">Key Erstellen</button>
     </section>
 </main>
 
 <footer>
     <p>&copy; Jakobsoft Inc.</p>
 </footer>
+
+<script>
+  function generateCode() {
+    let code = generateRandomCode();
+    alert("Dein Product Key ist: " + code);
+  }
+
+  function generateRandomCode() {
+    let code = "";
+    for (let i = 0; i < 3; i++) {
+      code += generateRandomSegment();
+      if (i < 2) {
+        code += "-";
+      }
+    }
+    return code;
+  }
+
+  function generateRandomSegment() {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let segment = '';
+    for (let i = 0; i < 4; i++) {
+      segment += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return segment;
+  }
+</script>
+
+</body>
+</html>
