@@ -27,12 +27,17 @@
 
         // Function to load the video based on the provided video ID
         function loadVideo(videoId) {
-            // Here, you would typically fetch the video data from a server
-            // and then dynamically embed the video player on the page.
-            // For simplicity, let's just display the video ID for now.
+            // Check if the video ID is 1, and redirect to Google if true
+            if (videoId === '1') {
+                window.location.href = 'https://www.google.com';
+            } else {
+                // Here, you would typically fetch the video data from a server
+                // and then dynamically embed the video player on the page.
+                // For simplicity, let's just display the video ID for now.
 
-            const videoContainer = document.getElementById('video-container');
-            videoContainer.innerHTML = `<p>Playing video with ID: ${videoId}</p>`;
+                const videoContainer = document.getElementById('video-container');
+                videoContainer.innerHTML = `<p>Playing video with ID: ${videoId}</p>`;
+            }
         }
 
         // When the page loads, extract the video ID from the URL and load the video
