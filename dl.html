@@ -107,6 +107,11 @@
     .download-button {
       margin-top: 10px;
     }
+
+    /* Hide the dropdown after a file is selected */
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 
@@ -136,6 +141,7 @@
 
   <script>
     const fileDropdown = document.getElementById('fileDropdown');
+    const dropdownContainer = document.querySelector('.dropdown-container');
     const progressBar = document.querySelector('.progress-bar');
     const statusText = document.querySelector('.status-text');
     const completionMessage = document.getElementById('completionMessage');
@@ -161,6 +167,8 @@
           statusText.textContent = 'Download Complete!';
           statusText.style.color = 'green';
           completionMessage.style.display = 'block';
+          // Hide the dropdown after a file is selected
+          dropdownContainer.classList.add('hidden');
         }
       };
 
