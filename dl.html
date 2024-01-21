@@ -96,7 +96,7 @@
 
   <div class="completion-message" id="completionMessage">Download Complete!</div>
 
-  <div class="dropdown-container">
+  <div class="dropdown-container" id="dropdownContainer">
     <label for="fileDropdown">Select a file:</label>
     <select id="fileDropdown">
       <option value="1">File 1</option>
@@ -113,6 +113,7 @@
   <script>
     const fileDropdown = document.getElementById('fileDropdown');
     const downloadContainer = document.getElementById('downloadContainer');
+    const dropdownContainer = document.getElementById('dropdownContainer');
     const progressBar = document.querySelector('.progress-bar');
     const statusText = document.querySelector('.status-text');
     const completionMessage = document.getElementById('completionMessage');
@@ -132,6 +133,9 @@
 
       // Show the download container
       downloadContainer.style.display = 'block';
+
+      // Hide the dropdown
+      dropdownContainer.style.display = 'none';
 
       progress = 0;
       progressBar.style.width = '0';
@@ -162,6 +166,9 @@
 
         // Hide the download container after completion
         downloadContainer.style.display = 'none';
+
+        // Show the dropdown again
+        dropdownContainer.style.display = 'flex';
       }, downloadDuration);
     }
   </script>
