@@ -145,16 +145,18 @@
           statusText.textContent = 'Download Complete!';
           statusText.style.color = 'green';
           completionMessage.style.display = 'block';
-
-          // Hide the download container after completion
-          downloadContainer.style.display = 'none';
-
-          // Hide the dropdown after a file is selected
-          document.querySelector('.dropdown-container').classList.add('hidden');
         }
       };
 
       progressInterval = setInterval(updateProgressBar, interval);
+
+      // Simulate a download completion after the specified duration
+      setTimeout(() => {
+        clearInterval(progressInterval);
+        statusText.textContent = 'Download Complete!';
+        statusText.style.color = 'green';
+        completionMessage.style.display = 'block';
+      }, downloadDuration);
     }
   </script>
 </body>
