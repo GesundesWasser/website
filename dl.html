@@ -110,7 +110,8 @@
     <iframe src="https://drive.google.com/file/d/1gKF9u3RZ2AkEa_U5OvsV2BmLvMkMdS84/preview" width="640" height="480" allow="autoplay"></iframe>
   </div>
 
-  <script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
     const fileDropdown = document.getElementById('fileDropdown');
     const downloadContainer = document.getElementById('downloadContainer');
     const dropdownContainer = document.getElementById('dropdownContainer');
@@ -122,60 +123,11 @@
     let progress = 0;
     let progressInterval;
 
-function initiateDownload() {
-  const selectedFile = fileDropdown.value;
-  const downloadUrl = selectedFile === '1' ? 'dl/file1.txt' : (selectedFile === '2' ? 'dl/file2.txt' : '');
+    function initiateDownload() {
+      const selectedFile = fileDropdown.value;
+      const downloadUrl = selectedFile === '1' ? 'dl/file1.txt' : (selectedFile === '2' ? 'dl/file2.txt' : '');
 
-  if (!downloadUrl) {
-    alert('Invalid file selection.');
-    return;
-  }
-
-  // Show the download container
-  downloadContainer.style.display = 'block';
-
-  // Hide the dropdown
-  dropdownContainer.style.display = 'none';
-
-  fetch(downloadUrl)
-    .then(response => response.text())
-    .then(data => {
-      const link = document.createElement('a');
-      link.href = 'data:application/octet-stream;charset=utf-8,' + encodeURIComponent(data);
-      link.download = `file${selectedFile}.txt`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      // Simulate a download completion
-      setTimeout(() => {
-        clearInterval(progressInterval);
-        statusText.textContent = 'Download Complete!';
-        statusText.style.color = 'green';
-        completionMessage.style.display = 'block';
-
-        // Hide the download container after completion
-        downloadContainer.style.display = 'none';
-
-        // Show the dropdown again
-        dropdownContainer.style.display = 'flex';
-      }, 1000); // Change this timeout as needed
-    })
-    .catch(error => {
-      console.error('Error during download:', error);
-
-      // Handle errors, and ensure the UI is updated accordingly
-      clearInterval(progressInterval);
-      statusText.textContent = 'Download Failed';
-      statusText.style.color = 'red';
-      completionMessage.style.display = 'block';
-      downloadContainer.style.display = 'none';
-      dropdownContainer.style.display = 'flex';
-    });
-}
-
-
-      if (downloadDuration === 0) {
+      if (!downloadUrl) {
         alert('Invalid file selection.');
         return;
       }
@@ -186,44 +138,48 @@ function initiateDownload() {
       // Hide the dropdown
       dropdownContainer.style.display = 'none';
 
-      progress = 0;
-      progressBar.style.width = '0';
+      fetch(downloadUrl)
+        .then(response => response.text())
+        .then(data => {
+          const link = document.createElement('a');
+          link.href = 'data:application/octet-stream;charset=utf-8,' + encodeURIComponent(data);
+          link.download = `file${selectedFile}.txt`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
 
-      const updateProgressBar = () => {
-        progress += (interval / downloadDuration) * 100;
-        progressBar.style.width = `${progress}%`;
+          // Simulate a download completion
+          setTimeout(() => {
+            clearInterval(progressInterval);
+            statusText.textContent = 'Download Complete!';
+            statusText.style.color = 'green';
+            completionMessage.style.display = 'block';
 
-        if (progress >= 100) {
+            // Hide the download container after completion
+            downloadContainer.style.display = 'none';
+
+            // Show the dropdown again
+            dropdownContainer.style.display = 'flex';
+          }, 1000); // Change this timeout as needed
+        })
+        .catch(error => {
+          console.error('Error during download:', error);
+
+          // Handle errors, and ensure the UI is updated accordingly
           clearInterval(progressInterval);
-          statusText.textContent = 'Download Complete!';
-          statusText.style.color = 'green';
+          statusText.textContent = 'Download Failed';
+          statusText.style.color = 'red';
           completionMessage.style.display = 'block';
-
-          // Hide the download container after completion
           downloadContainer.style.display = 'none';
-
-          // Show the dropdown again
           dropdownContainer.style.display = 'flex';
-        }
-      };
-
-      progressInterval = setInterval(updateProgressBar, interval);
-
-      // Simulate a download completion after the specified duration
-      setTimeout(() => {
-        clearInterval(progressInterval);
-        statusText.textContent = 'Download Complete!';
-        statusText.style.color = 'green';
-        completionMessage.style.display = 'block';
-
-        // Hide the download container after completion
-        downloadContainer.style.display = 'none';
-
-        // Show the dropdown again
-        dropdownContainer.style.display = 'flex';
-      }, downloadDuration);
+        });
     }
-  </script>
+
+    const downloadButton = document.getElementById('downloadButton');
+    downloadButton.addEventListener('click', initiateDownload);
+  });
+</script>
+
 </body>
 
 </html>
