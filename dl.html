@@ -19,27 +19,6 @@
       flex-direction: column;
     }
 
-    header, nav, main, footer {
-      padding: 20px;
-    }
-
-    nav ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-    }
-
-    nav li {
-      display: inline;
-      margin-right: 15px;
-    }
-
-    a {
-      color: #fff;
-      text-decoration: none;
-    }
-
     button {
       background-color: #555;
       color: #fff;
@@ -73,8 +52,6 @@
       height: 30px;
       background-color: #eee;
       border-radius: 5px;
-      position: relative;
-      overflow: hidden;
       margin-top: 10px;
     }
 
@@ -84,8 +61,6 @@
       background-color: #4caf50;
       border-radius: 5px;
       transition: width 0.3s ease;
-      position: relative;
-      overflow: hidden;
     }
 
     .status-text {
@@ -141,7 +116,7 @@
 
   <script>
     const fileDropdown = document.getElementById('fileDropdown');
-    const dropdownContainer = document.querySelector('.dropdown-container');
+    const downloadBar = document.querySelector('.download-bar');
     const progressBar = document.querySelector('.progress-bar');
     const statusText = document.querySelector('.status-text');
     const completionMessage = document.getElementById('completionMessage');
@@ -153,12 +128,15 @@
       // Check if the download is already in progress
       if (progress === 0) {
         const selectedFile = fileDropdown.value;
-        const downloadDuration = selectedFile === '1' ? 180000 : (selectedFile === '2' ? 120000 : 0);
+        const downloadDuration = selectedFile === '1' ? 5000 : (selectedFile === '2' ? 8000 : 0);
 
         if (downloadDuration === 0) {
           alert('Invalid file selection.');
           return;
         }
+
+        // Show the download bar
+        downloadBar.style.display = 'block';
 
         const updateProgressBar = () => {
           progress += (interval / downloadDuration) * 100;
@@ -169,35 +147,14 @@
             statusText.textContent = 'Download Complete!';
             statusText.style.color = 'green';
             completionMessage.style.display = 'block';
-            // Hide the dropdown after a file is selected
-            dropdownContainer.classList.add('hidden');
+            // Hide the download bar and dropdown after a file is selected
+            downloadBar.style.display = 'none';
+            document.querySelector('.dropdown-container').classList.add('hidden');
           }
         };
 
         const progressInterval = setInterval(updateProgressBar, interval);
-
-        // Trigger the download after initializing the progress bar
-        downloadFile(selectedFile, progressInterval);
       }
-    }
-
-    function downloadFile(selectedFile, progressInterval) {
-      let filename;
-      if (selectedFile === '1') {
-        filename = 'file1.py';
-      } else if (selectedFile === '2') {
-        filename = 'file2.py';
-      } else {
-        alert('Invalid file selection.');
-        return;
-      }
-
-      const link = document.createElement('a');
-      link.href = 'dl/' + filename;
-      link.download = filename;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
     }
   </script>
 </body>
