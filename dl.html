@@ -122,9 +122,58 @@
     let progress = 0;
     let progressInterval;
 
-    function initiateDownload() {
-      const selectedFile = fileDropdown.value;
-      const downloadDuration = selectedFile === '1' ? 5000 : (selectedFile === '2' ? 8000 : 0);
+function initiateDownload() {
+  const selectedFile = fileDropdown.value;
+  const downloadUrl = selectedFile === '1' ? 'dl/file1.txt' : (selectedFile === '2' ? 'dl/file2.txt' : '');
+
+  if (!downloadUrl) {
+    alert('Invalid file selection.');
+    return;
+  }
+
+  // Show the download container
+  downloadContainer.style.display = 'block';
+
+  // Hide the dropdown
+  dropdownContainer.style.display = 'none';
+
+  fetch(downloadUrl)
+    .then(response => response.text())
+    .then(data => {
+      const link = document.createElement('a');
+      link.href = 'data:application/octet-stream;charset=utf-8,' + encodeURIComponent(data);
+      link.download = `file${selectedFile}.txt`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Simulate a download completion
+      setTimeout(() => {
+        clearInterval(progressInterval);
+        statusText.textContent = 'Download Complete!';
+        statusText.style.color = 'green';
+        completionMessage.style.display = 'block';
+
+        // Hide the download container after completion
+        downloadContainer.style.display = 'none';
+
+        // Show the dropdown again
+        dropdownContainer.style.display = 'flex';
+      }, 1000); // Change this timeout as needed
+    })
+    .catch(error => {
+      console.error('Error during download:', error);
+
+      // Handle errors, and ensure the UI is updated accordingly
+      clearInterval(progressInterval);
+      statusText.textContent = 'Download Failed';
+      statusText.style.color = 'red';
+      completionMessage.style.display = 'block';
+      downloadContainer.style.display = 'none';
+      dropdownContainer.style.display = 'flex';
+    });
+}
+
 
       if (downloadDuration === 0) {
         alert('Invalid file selection.');
