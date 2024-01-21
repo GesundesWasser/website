@@ -30,13 +30,16 @@
             // Check if the video ID is 1, and redirect to Google if true
             if (videoId === '1') {
                 window.location.href = 'https://www.google.com';
-            } else {
+            } else if (videoId) {
                 // Here, you would typically fetch the video data from a server
                 // and then dynamically embed the video player on the page.
                 // For simplicity, let's just display the video ID for now.
 
                 const videoContainer = document.getElementById('video-container');
                 videoContainer.innerHTML = `<p>Playing video with ID: ${videoId}</p>`;
+            } else {
+                // Redirect to 404.html if no or invalid video ID is found
+                window.location.href = '404.html';
             }
         }
 
@@ -44,12 +47,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const videoId = getVideoIdFromURL();
 
-            if (videoId) {
-                loadVideo(videoId);
-            } else {
-                // Display a message if no video ID is provided
-                alert('No video ID found in the URL.');
-            }
+            loadVideo(videoId);
         });
     </script>
 
