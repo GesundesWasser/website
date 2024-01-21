@@ -145,6 +145,8 @@
           statusText.textContent = 'Download Complete!';
           statusText.style.color = 'green';
           completionMessage.style.display = 'block';
+          // Hide the download container after completion
+          downloadContainer.style.display = 'none';
         }
       };
 
@@ -156,6 +158,8 @@
         statusText.textContent = 'Download Complete!';
         statusText.style.color = 'green';
         completionMessage.style.display = 'block';
+        // Hide the download container after completion
+        downloadContainer.style.display = 'none';
       }, downloadDuration);
     }
   </script>
