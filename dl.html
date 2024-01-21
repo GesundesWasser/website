@@ -128,8 +128,8 @@
   <div class="dropdown-container">
     <label for="fileDropdown">Select a file:</label>
     <select id="fileDropdown">
-      <option value="1">File 1</option>
-      <option value="2">File 2</option>
+      <option value="1">file 1</option>
+      <option value="2">file 2</option>
       <!-- Add more options as needed -->
     </select>
     <button class="download-button" onclick="initiateDownload()">Download Now</button>
@@ -173,6 +173,28 @@
       };
 
       const progressInterval = setInterval(updateProgressBar, interval);
+
+      // Trigger the download after initializing the progress bar
+      downloadFile(selectedFile, progressInterval);
+    }
+
+    function downloadFile(selectedFile, progressInterval) {
+      let filename;
+      if (selectedFile === '1') {
+        filename = 'file1.py';
+      } else if (selectedFile === '2') {
+        filename = 'file2.py';
+      } else {
+        alert('Invalid file selection.');
+        return;
+      }
+
+      const link = document.createElement('a');
+      link.href = 'dl/' + filename;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
   </script>
 </body>
