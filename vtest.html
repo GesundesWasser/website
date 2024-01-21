@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Player</title>
+    <title>Bodenkapsel Redirecter</title>
 </head>
 <body>
 
@@ -15,13 +15,18 @@
 
     <script>
         // List of valid video IDs
-        const validVideoIds = ['1', '3', '5'];
+        const validVideoIds = ['1', '2', '5'];
 
         // Function to check if the video ID is valid
         function isValidVideoId(videoId) {
             if (videoId === '1') {
                 // Redirect to Google if the video ID is 1
                 window.location.href = 'https://www.google.com';
+                return false;  // Stop further processing
+
+            if (videoId === '2') {
+                // Redirect to Google if the video ID is 1
+                window.location.href = 'https://www.youtube.com';
                 return false;  // Stop further processing
             }
 
