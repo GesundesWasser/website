@@ -139,10 +139,10 @@
       dropdownContainer.style.display = 'none';
 
       fetch(downloadUrl)
-        .then(response => response.text())
-        .then(data => {
+        .then(response => response.blob())
+        .then(blob => {
           const link = document.createElement('a');
-          link.href = 'data:application/octet-stream;charset=utf-8,' + encodeURIComponent(data);
+          link.href = window.URL.createObjectURL(blob);
           link.download = `file${selectedFile}.txt`;
           document.body.appendChild(link);
           link.click();
