@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player</title>
+</head>
+<body>
+
+    <h1>Video Player</h1>
+
+    <div id="video-container">
+        <!-- Video player will be displayed here -->
+    </div>
+
+    <script>
+        // Function to extract the video ID from the URL
+        function getVideoIdFromURL() {
+            // Get the current URL's search parameters
+            const urlSearchParams = new URLSearchParams(window.location.search);
+            
+            // Extract the 'v' parameter from the search parameters
+            const videoId = urlSearchParams.get('v');
+
+            return videoId;
+        }
+
+        // Function to load the video based on the provided video ID
+        function loadVideo(videoId) {
+            // Here, you would typically fetch the video data from a server
+            // and then dynamically embed the video player on the page.
+            // For simplicity, let's just display the video ID for now.
+
+            const videoContainer = document.getElementById('video-container');
+            videoContainer.innerHTML = `<p>Playing video with ID: ${videoId}</p>`;
+        }
+
+        // When the page loads, extract the video ID from the URL and load the video
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoId = getVideoIdFromURL();
+
+            if (videoId) {
+                loadVideo(videoId);
+            } else {
+                // Display a message if no video ID is provided
+                alert('No video ID found in the URL.');
+            }
+        });
+    </script>
+
+</body>
+</html>
