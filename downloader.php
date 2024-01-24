@@ -110,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Check if the download parameter is set to 1
-if (isset($_GET['download']) && $_GET['download'] == 1) {
+if (isset($_GET['downloadpass']) && $_GET['downloadpass'] == 1) {
     // Perform the necessary action for download = 1
     // You can redirect, display a message, or execute any other code here
     // For now, I'll redirect to the download page with a specific message
