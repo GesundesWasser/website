@@ -74,5 +74,42 @@ $conn->close();
     <?php endforeach; ?>
 </table>
 
+<?php
+$servername = "localhost";
+$username = "web";
+$password = "bodenkapsel";
+$database = "users";
+
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Handle the button click
+    if (isset($_POST["updateButton"])) {
+        // Retrieve user ID from the form
+        $userIdToUpdate = $_POST["userId"];
+
+        // Create a connection
+        $conn = new mysqli($servername, $username, $password, $database);
+
+        // Check the connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        // Your database update logic here
+        $sql = "UPDATE users SET downloadpass = 1 WHERE id = $userIdToUpdate";
+        $result = $conn->query($sql);
+
+        // Close the connection
+        $conn->close();
+    }
+}
+?>
+
+<form method="post" action="">
+    <label for="userId">User ID:</label>
+    <input type="text" id="userId" name="userId" required>
+    <button type="submit" name="updateButton">Downloadpass =1</button>
+</form>
+
 </body>
 </html>
