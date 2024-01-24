@@ -141,10 +141,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->fetch()) {
         // Store the user details in the session
         $_SESSION['user'] = $username;
-        $_SESSION['coins'] = $coins; // Assuming you have a column named 'coins' in your database
+        $_SESSION['coins'] = isset($coins) ? $coins : 0; // Check if $coins is set, otherwise default to 0
     } else {
         // Handle the case where an Invalid Password is Detected
-        header("Location: shoplogin");
+        header("Location: stellarlogin");
         exit();
     }
     
