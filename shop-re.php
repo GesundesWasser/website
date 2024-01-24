@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['coins'] = isset($coins) ? $coins : 0; // Check if $coins is set, otherwise default to 0
     } else {
         // Handle the case where an Invalid Password is Detected
-        header("Location: stellarlogin");
+        header("Location: shoplogin");
         exit();
     }
 
@@ -66,7 +66,62 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Your head content goes here -->
+<style>
+body {
+    background-color: #222; /* Darker background color */
+    color: #fff; /* White text color for better readability */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+/* Additional styles for better readability */
+header, nav, main, footer {
+    padding: 20px;
+}
+
+header img {
+            width: 125px;
+            height: 38px;
+            margin-right: 15px;
+            vertical-align: middle; /* Align the image vertically */
+        }
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+nav li {
+    display: inline;
+    margin-right: 15px;
+}
+
+a {
+    color: #fff; /* White color for links */
+    text-decoration: none;
+}
+
+button {
+    background-color: #555; /* Darker button color */
+    color: #fff; /* White text color for the button */
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Darker and smaller text input fields */
+input[type="text"], input[type="password"], textarea {
+    background-color: #333; /* Darker textbox background color */
+    color: #fff; /* White text color for the textbox */
+    padding: 8px;
+    border: none;
+    border-radius: 5px; /* Rounded corners for the textbox */
+    width: 150px; /* Set the width of the textbox */
+}
+    </style>
 </head>
 <body>
     <!-- Your body content goes here -->
