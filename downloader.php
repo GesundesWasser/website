@@ -96,6 +96,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->fetch() && $downloadpass == 1) {
         // Store the user in the session
         $_SESSION['user'] = $username;
+        // Check for downloadpass and redirect to Google if it's set to 1
+        header("Location: https://www.google.com");
+        exit();
     } else {
         // Handle the case where an Invalid Password or downloadpass is not 1
         $_SESSION['downloadpass'] = 1;
