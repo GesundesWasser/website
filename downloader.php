@@ -98,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['user'] = $username;
     } else {
         // Handle the case where an Invalid Password is Detected
-        header("Location: download");
+        header("Location: download?download=1"); // Pass the download parameter
         exit();
     }
 
@@ -108,12 +108,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: download");
     exit();
 }
+
+// Check if the download parameter is set to 1
+if (isset($_GET['download']) && $_GET['download'] == 1) {
+    // Perform the necessary action for download = 1
+    // You can redirect, display a message, or execute any other code here
+    // For now, I'll redirect to the download page with a specific message
+    header("Location: download?message=Download is set to 1");
+    exit();
+}
 ?>
+
 
 <header>
         <!-- Wrapped the img tag with an a tag to make it a link to Google -->
         <a href="site">
-            <img src="img/wwagoinc.png" alt="WWAGO Inc Logo">
+            <img src="img/wwagoinc.png" alt="WWAGO Inc. Logo">
         </a>
     </header>
 

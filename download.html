@@ -116,37 +116,7 @@
       <div class="status-text">Downloading...</div>
     </div>
   </div>
-  <?php
-  // Establish a MySQL connection (replace these with your actual database credentials)
-  $servername = "localhost";
-  $username = "web";
-  $password = "bodenkapsel";
-  $database = "users";
 
-  $conn = new mysqli($servername, $username, $password, $database);
-
-  // Check connection
-  if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
-  }
-
-  // Check if the form is submitted
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      // Get the user ID from the form
-      $userId = $_POST["userId"];
-
-      // Perform a SELECT query to check if downloadpass is 1 for the specified user ID
-      $sql = "SELECT * FROM users WHERE id = $userId AND downloadpass = 1";
-      $result = $conn->query($sql);
-
-      // Check the result and send appropriate response
-      if ($result->num_rows > 0) {
-          $message = "Download is allowed for user ID $userId!";
-      } else {
-        header("Location: site");
-      }
-  }
-  ?>
   <div class="completion-message" id="completionMessage">Download Complete!</div>
 
   <button class="download-button" id="downloadButton" onclick="downloadFile()">Download Now</button>
@@ -155,11 +125,11 @@
     <iframe src="https://drive.google.com/file/d/1gKF9u3RZ2AkEa_U5OvsV2BmLvMkMdS84/preview" width="640" height="480" allow="autoplay"></iframe>
   </div>
 
-  <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <label for="userId">Enter User ID:</label>
-        <input type="text" id="userId" name="userId" required>
-        <button type="submit">Check Download</button>
-    </form>
+  <form method="post" action="downloader">
+    <label for="passcode">Have Download Pass?</label>
+    <input type="password" id="passcode" name="passcode" placeholder="Password" />
+    <button type="submit">Submit</button>
+</form>
 
   <script>
     function downloadFile() {
