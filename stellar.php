@@ -139,13 +139,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <section id="section1">
             <h2>Oh Nein, Der Tower Brennt!</h2>
             <p>WENN DER DIE SIRENE HÖRT, FÜHLT ER SICH SEHR GESTÖRT!</p>
-            <button onclick="window.location.href='stellar/tower-fire.html'">Anzeigen</button>
+            <button onclick="window.location.href='video/tower-fire.html'">Anzeigen</button>
         </section>
 
         <section id="section2">
             <h2>Mystery Video</h2>
             <p>ITS A MYSTERY!</p>
-            <button onclick="window.location.href='stellar/rickroll.html'">Anzeigen</button>
+            <button onclick="window.location.href='video/rickroll.html'">Anzeigen</button>
         </section>
 
         <section id="section3">
