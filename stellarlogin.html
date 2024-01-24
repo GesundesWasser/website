@@ -25,6 +25,15 @@
             overflow: hidden;
         }
 
+        button {
+            background-color: #555; /* Darker button color */
+            color: #fff; /* White text color for the button */
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px; /* Rounded corners */
+        }
+
         nav li {
             display: inline;
             margin-right: 15px;
@@ -77,42 +86,14 @@
         <h1>Stellar Login</h1>
     </header>
 
-    <form id="loginForm" onsubmit="checkCredentials(); return false;">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-
+    <form method="post" action="stellar">
+        <label for="passcode">Enter Password:</label>
+        <input type="password" id="passcode" name="passcode" placeholder="Password" />
         <button type="submit">Submit</button>
     </form>
 
     <p id="successMessage" style="display:none;">Login successful! Redirecting...</p>
     <p id="errorMessage" style="display:none;">Incorrect username or password. Please try again.</p>
-
-    <script>
-        function checkCredentials() {
-            var enteredUsername = document.getElementById("username").value;
-            var enteredPassword = document.getElementById("password").value;
-            
-            // Replace 'yourUsernames' and 'yourPasswords' with the actual valid credentials
-            var validUsernames = ["wwagoinc", "jakobsoftinc", "stellar"];
-            var validPasswords = ["bodenkapsel", "remotesimulieren", "stellar"];
-
-            // Check if enteredUsername is in the validUsernames array and the corresponding password matches
-            var isValid = validUsernames.indexOf(enteredUsername) !== -1 && validPasswords[validUsernames.indexOf(enteredUsername)] === enteredPassword;
-
-            if (isValid) {
-                document.getElementById("successMessage").style.display = "block";
-                document.getElementById("errorMessage").style.display = "none";
-                // Redirect to Google (replace with your desired URL)
-                window.location.href = "stellar";
-            } else {
-                document.getElementById("successMessage").style.display = "none";
-                document.getElementById("errorMessage").style.display = "block";
-            }
-        }
-    </script>
 
 <footer>
 </footer>
