@@ -1,221 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vergammelkapsel</title>
-  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="img/favicon.ico" type="img/x-icon">
-  <style>
-    body {
-      background-color: #222;
-      color: #fff;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      flex-direction: column;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vergammelkapsel</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/favicon.ico" type="img/x-icon">
+    <style>
+        body {
+            background-color: #222;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
 
-    header, nav, main, footer {
-      padding: 20px;
-    }
+        header, main, footer {
+            padding: 20px;
+            box-sizing: border-box;
+            max-width: 800px; /* Set your desired max-width */
+            margin: 0; /* Set margin to 0 for left alignment */
+        }
 
-    nav ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-    }
+        header img {
+            max-width: 80px;
+            height: auto;
+            margin-right: 15px;
+            vertical-align: middle; /* Align the image vertically */
+        }
 
-    nav li {
-      display: inline;
-      margin-right: 15px;
-    }
+        header h1 {
+            margin: 0;
+            display: inline-block;
+            vertical-align: middle; /* Align the text vertically */
+        }
 
-    a {
-      color: #fff;
-      text-decoration: none;
-    }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
 
-    button {
-      background-color: #555;
-      color: #fff;
-      padding: 10px;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-    }
+        nav li {
+            display: inline;
+            margin-right: 15px;
+        }
 
-    input[type="text"],
-    input[type="password"],
-    textarea {
-      background-color: #333;
-      color: #fff;
-      padding: 8px;
-      border: none;
-      border-radius: 5px;
-      width: 150px;
-    }
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
 
-    .download-container {
-      width: 300px;
-      border: 1px solid #ccc;
-      padding: 10px;
-      border-radius: 5px;
-    }
+        button {
+            background-color: #555;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
 
-    .download-bar {
-      width: 100%;
-      height: 30px;
-      background-color: #eee;
-      border-radius: 5px;
-      position: relative;
-      overflow: hidden;
-    }
+        input[type="text"], input[type="password"], textarea {
+            background-color: #333;
+            color: #fff;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            width: 150px;
+        }
 
-    .progress-bar {
-      height: 100%;
-      width: 0;
-      background-color: #4caf50;
-      border-radius: 5px;
-      transition: width 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
+        main img {
+            max-width: 80px;
+            height: auto;
+            margin-right: 15px;
+            vertical-align: middle; /* Align the image vertically */
+        }
 
-    .status-text {
-      text-align: center;
-      margin-top: 10px;
-    }
+        main h2 {
+            margin: 0;
+            display: inline-block;
+            vertical-align: middle; /* Align the text vertically */
+        }
 
-    .video-container {
-      margin-top: 20px;
-    }
+        section {
+            margin-bottom: 20px;
+        }
 
-    .completion-message {
-      margin-top: 10px;
-      color: rgb(0, 255, 13);
-      font-weight: bold;
-      display: none;
-    }
+        section img {
+            max-width: 100%; /* Ensure the image doesn't exceed its original width */
+            height: auto; /* Maintain the aspect ratio */
+            margin-right: 15px;
+            margin-bottom: 15px; /* Add bottom margin to separate image and text */
+            vertical-align: middle; /* Align the image vertically */
+        }
 
-    .download-button {
-      display: none;
-      margin-top: 10px;
-    }
-  </style>
+        section#section3 img {
+            display: block; /* Set the image to block-level to make it appear above the text */
+            margin-bottom: 10px; /* Add some space between the image and the text */
+        }
+    </style>
 </head>
-
 <body>
-  <?php
-  error_reporting(E_ALL);
-  ini_set('display_errors', 1);
 
-  session_start();
+    <header>
+        <!-- Wrapped the img tag with an a tag to make it a link to Google -->
+        <a href="site">
+            <img src="img/jakobsoft-logo.png" alt="Jakobsoft Logo">
+        </a>
+        <h1>USERNAME</h1>
+    </header>
 
-  // Replace with your actual MySQL database details
-  $host = "localhost";
-  $username = "web";
-  $password = "bodenkapsel";
-  $database = "users";
+<main>
+    <section id="section1">
+    <h2>SECTION1</h2>
+        <p>TEXT</p>
+        <button onclick="window.location.href=''">Download</button>
+    </section>
 
-  $mysqli = new mysqli($host, $username, $password, $database);
+    <section id="section2">
+    <h2>SECTION2</h2>
+        <p>TEXT</p>
+        <button onclick="window.location.href=''">Download</button>
+    </section>
 
-  if ($mysqli->connect_error) {
-    die("Connection failed: " . $mysqli->connect_error);
-  }
+    <section id="section3">
+        <h2>SECTION3</h2>
+        <p>TEXT</p>
+        <button onclick="window.location.href=''">Download</button>
+    </section>
 
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $enteredPasscode = $_POST["passcode"];
+    <section id="section4">
+        <h2>SECTION4</h2>
+        <p>TEXT</p>
+        <button onclick="window.location.href=''">Download</button>
+    </section>
 
-    // Query the database to get the username, image, and coins associated with the entered passcode
-    $query = "SELECT username, image, coins FROM users WHERE passcode = ?";
-    $stmt = $mysqli->prepare($query);
-    $stmt->bind_param("s", $enteredPasscode);
-    $stmt->execute();
-    $stmt->bind_result($username, $userImage, $coins);
+    <section id="section5">
+        <h2>SECTION5</h2>
+        <p>TEXT</p>
+        <button onclick="window.location.href=''">Download</button>
+    </section>
+</main>
 
-    if ($stmt->fetch()) {
-      // Store the user details in the session
-      $_SESSION['user'] = $username;
-      $_SESSION['coins'] = isset($coins) ? $coins : 0; // Check if $coins is set, otherwise default to 0
-    } else {
-      // Handle the case where an Invalid Password is Detected
-      header("Location: stellarlogin");
-      exit();
-    }
+<footer>
+    <p>&copy; WWAGO Development Inc.</p>
+</footer>
 
-    $stmt->close();
-
-    // Check if the "Remove 10 Coins" button is clicked
-    if (isset($_POST['removeCoins'])) {
-      // Ensure the user has enough coins before subtracting
-      if (isset($_SESSION['coins']) && $_SESSION['coins'] >= 10) {
-        // Subtract 10 coins
-        $_SESSION['coins'] -= 10;
-
-        // Update the database with the new coin value
-        $updateQuery = "UPDATE users SET coins = ? WHERE username = ?";
-        $updateStmt = $mysqli->prepare($updateQuery);
-        $updateStmt->bind_param("is", $_SESSION['coins'], $_SESSION['user']);
-        $updateStmt->execute();
-        $updateStmt->close();
-      } else {
-        // Handle the case where the user doesn't have enough coins
-        echo "Not enough coins to remove.";
-      }
-    }
-  } else {
-    // Handle the case where the form is not submitted
-    header("Location: shoplogin");
-    exit();
-  }
-  ?>
-  <div class="download-container">
-    <div class="download-bar">
-      <div class="progress-bar"></div>
-      <div class="status-text">Downloading...</div>
-    </div>
-  </div>
-
-  <div class="completion-message" id="completionMessage">Download Complete!</div>
-
-  <button class="download-button" id="downloadButton" onclick="downloadFile()">Download Now</button>
-
-  <div class="video-container">
-    <iframe src="https://drive.google.com/file/d/1gKF9u3RZ2AkEa_U5OvsV2BmLvMkMdS84/preview" width="640" height="480" allow="autoplay"></iframe>
-  </div>
-
-  <form method="post" action="downloader">
-    <label for="passcode">Have Download Pass?</label>
-    <input type="password" id="passcode" name="passcode" placeholder="Password" />
-    <button type="submit" name="removeCoins">Submit</button>
-  </form>
-
-  <script>
-    const progressBar = document.querySelector('.progress-bar');
-    const statusText = document.querySelector('.status-text');
-    const completionMessage = document.getElementById('completionMessage');
-    const downloadButton = document.getElementById('downloadButton');
-    const downloadDuration = 600000; // Set the download duration in milliseconds
-    const interval = 1000; // Set the update interval in milliseconds
-
-    let progress = 0;
-    let progressInterval;
-
-    const updateProgressBar = () => {
-      progress += (interval / downloadDuration) * 100;
-      progressBar.style.width = `${progress}%`;
-
-      if (progress < 100) {
-        // Continue updating progress
-      } else {
-        clearInterval(progressInterval);
-        statusText.textContent = 'Download Complete!';
-        statusText.style.color = 'green';
-        completionMessage.style.display = '
+</body>
+</html>
