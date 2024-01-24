@@ -56,6 +56,8 @@ $conn->close();
         <th>Username</th>
         <th>Passcode</th>
         <th>Image</th>
+        <th>Downloadpass</th>
+        <th>Coins</th>
         <!-- Add other column headers as needed -->
     </tr>
 
@@ -65,6 +67,8 @@ $conn->close();
             <td><?= $row['username'] ?></td>
             <td><?= $row['passcode'] ?></td>
             <td><?= $row['image'] ?></td>
+            <td><?= $row['downloadpass'] ?></td>
+            <td><?= $row['coins'] ?></td>
             <!-- Add other columns as needed -->
         </tr>
     <?php endforeach; ?>
