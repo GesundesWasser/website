@@ -144,14 +144,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['coins'] = $coins; // Assuming you have a column named 'coins' in your database
     } else {
         // Handle the case where an Invalid Password is Detected
-        header("Location: stellarlogin");
+        header("Location: shoplogin");
         exit();
     }
     
     $stmt->close();
 } else {
     // Handle the case where the form is not submitted
-    header("Location: stellarlogin");
+    header("Location: shoplogin");
     exit();
 }
 ?>
