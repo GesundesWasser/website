@@ -120,7 +120,7 @@ if ($mysqli->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $enteredPasscode = $_POST["passcode"];
 
-    // Query the database to get the username associated with the entered passcode
+    // Query the database to get the username and image associated with the entered passcode
     $query = "SELECT username, image FROM users WHERE passcode = ?";
     $stmt = $mysqli->prepare($query);
     $stmt->bind_param("s", $enteredPasscode);
@@ -130,8 +130,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->fetch()) {
         // Store the user in the session
         $_SESSION['user'] = $username;
-
-        echo "";
     } else {
         // Handle the case where an Invalid Password is Detected
         header("Location: stellarlogin");
@@ -183,7 +181,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <footer>
     <p>&copy; WWAGO Inc.</p>
 </footer>
-
-
-</body>
-</html>
