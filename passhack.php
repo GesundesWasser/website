@@ -9,10 +9,10 @@
 
 <?php
 // Replace these with your actual database connection details
-$servername = "your_mysql_server";
-$username = "your_mysql_username";
-$password = "your_mysql_password";
-$dbname = "your_database_name";
+$servername = "localhost";
+$username = "web";
+$password = "bodenkapsel";
+$dbname = "users";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
