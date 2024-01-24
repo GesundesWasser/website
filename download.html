@@ -125,11 +125,16 @@
     <iframe src="https://drive.google.com/file/d/1gKF9u3RZ2AkEa_U5OvsV2BmLvMkMdS84/preview" width="640" height="480" allow="autoplay"></iframe>
   </div>
 
+  <form method="post" action="downloader">
+    <label for="passcode">Have Download Pass?</label>
+    <input type="password" id="passcode" name="passcode" placeholder="Password" />
+    <button type="submit">Submit</button>
+</form>
+
   <script>
     function downloadFile() {
       const link = document.createElement('a');
-      link.href = 'dl/winwowsinstall-1.0desktop-18012024.vbs'; 
-      link.download = 'winwowsinstall-1.0desktop-18012024.vbs'; 
+      link.href = 'downloader'; 
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
