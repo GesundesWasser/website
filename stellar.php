@@ -110,9 +110,9 @@ session_start();
 
 // Replace with your actual MySQL database details
 $host = "localhost";
-$username = "your_username";
-$password = "your_password";
-$database = "your_database";
+$username = "web";
+$password = "bodenkapsel";
+$database = "users";
 
 $mysqli = new mysqli($host, $username, $password, $database);
 
