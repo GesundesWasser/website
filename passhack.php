@@ -8,10 +8,10 @@
 <body>
 
 <?php
-$servername = "your_database_host";
-$username = "your_database_username";
-$password = "your_database_password";
-$database = "your_database_name";
+$servername = "localhost";
+$username = "web";
+$password = "bodenkapsel";
+$database = "users";
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
