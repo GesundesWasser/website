@@ -131,12 +131,12 @@ if ($mysqli->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $enteredPasscode = $_POST["passcode"];
 
-    // Query the database to get the username and image associated with the entered passcode
-    $query = "SELECT username, image FROM users WHERE passcode = ?";
+    // Query the database to get the username, image, and coins associated with the entered passcode
+    $query = "SELECT username, image, coins FROM users WHERE passcode = ?";
     $stmt = $mysqli->prepare($query);
     $stmt->bind_param("s", $enteredPasscode);
     $stmt->execute();
-    $stmt->bind_result($username, $userImage);
+    $stmt->bind_result($username, $userImage, $coins);
     
     if ($stmt->fetch()) {
         // Store the user details in the session
