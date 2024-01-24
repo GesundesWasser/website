@@ -152,7 +152,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <a href="site">
     <img src="img/<?php echo isset($userImage) ? $userImage : 'default-image.png'; ?>" alt="User Icon">
 </a>
-    <h1><?php echo isset($user) ? "WWAGO, " . $user : "USERNAME"; ?></h1>
+    <h1><?php echo isset($_SESSION['user']) ? "WWAGO, " . $_SESSION['user'] : "USERNAME"; ?></h1>
 </header>
 
 <main>
