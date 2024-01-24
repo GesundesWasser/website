@@ -1,3 +1,48 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+session_start();
+
+// Replace with your actual MySQL database details
+$host = "localhost";
+$username = "web";
+$password = "bodenkapsel";
+$database = "users";
+
+$mysqli = new mysqli($host, $username, $password, $database);
+
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $enteredPasscode = $_POST["passcode"];
+
+    // Query the database to get the username and image associated with the entered passcode
+    $query = "SELECT username, image FROM users WHERE passcode = ?";
+    $stmt = $mysqli->prepare($query);
+    $stmt->bind_param("s", $enteredPasscode);
+    $stmt->execute();
+    $stmt->bind_result($username, $userImage);
+    
+    if ($stmt->fetch()) {
+        // Store the user in the session
+        $_SESSION['user'] = $username;
+    } else {
+        // Handle the case where an Invalid Password is Detected
+        header("Location: shoplogin");
+        exit();
+    }
+
+    $stmt->close();
+} else {
+    // Handle the case where the form is not submitted
+    header("Location: shoplogin");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -102,13 +147,12 @@
 </head>
 <body>
 
-    <header>
-        <!-- Wrapped the img tag with an a tag to make it a link to Google -->
-        <a href="site">
-            <img src="img/jakobsoft-logo.png" alt="Jakobsoft Logo">
-        </a>
-        <h1>USERNAME</h1>
-    </header>
+<header>
+    <a href="site">
+    <img src="img/<?php echo isset($userImage) ? $userImage : 'default-image.png'; ?>" alt="User Icon">
+</a>
+    <h1><?php echo isset($_SESSION['user']) ? "Hiya! " . $_SESSION['user'] : "USERNAME"; ?></h1>
+</header>
 
 <main>
     <section id="section1">
