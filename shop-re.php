@@ -38,23 +38,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt->close();
 
-    // Check if the "Remove 10 Coins" button is clicked
-    if (isset($_POST['removeCoins'])) {
-        // Ensure the user has enough coins before subtracting
-        if ($_SESSION['coins'] >= 10) {
-            // Subtract 10 coins
-            $_SESSION['coins'] -= 10;
+// Check if the "Remove 10 Coins" button is clicked
+if (isset($_POST['removeCoins'])) {
+    // Ensure the user has enough coins before subtracting
+    if ($_SESSION['coins'] >= 10) {
+        // Subtract 10 coins
+        $_SESSION['coins'] -= 10;
 
-            // Update the database with the new coin value
-            $updateQuery = "UPDATE users SET coins = ? WHERE username = ?";
-            $updateStmt = $mysqli->prepare($updateQuery);
-            $updateStmt->bind_param("is", $_SESSION['coins'], $_SESSION['user']);
-            $updateStmt->execute();
-            $updateStmt->close();
-        } else {
-            // Handle the case where the user doesn't have enough coins
-            echo "Not enough coins to remove.";
-        }
+        // Update the database with the new coin value
+        $updateQuery = "UPDATE users SET coins = ? WHERE username = ?";
+        $updateStmt = $mysqli->prepare($updateQuery);
+        $updateStmt->bind_param("is", $_SESSION['coins'], $_SESSION['user']);
+        $updateStmt->execute();
+        $updateStmt->close();
+    } else {
+        // Handle the case where the user doesn't have enough coins
+        echo "Not enough coins to remove.";
+    }
+
+    // You can add any additional logic here if needed, or remove the entire block if no further action is required
+}
+
     }
 } else {
     // Handle the case where the form is not submitted
