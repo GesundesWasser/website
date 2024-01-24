@@ -1,8 +1,8 @@
 <?php
-$servername = "your_database_host";
-$username = "your_database_username";
-$password = "your_database_password";
-$database = "your_database_name";
+$servername = "localhost";
+$username = "web";
+$password = "bodenkapsel";
+$database = "users";
 
 // Create a connection
 $conn = new mysqli($servername, $username, $password, $database);
