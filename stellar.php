@@ -133,7 +133,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <header>
     <!-- Wrapped the img tag with an a tag to make it a link to Google -->
+    <a href="site">
     <img src="img/<?php echo isset($userImage) ? $userImage : 'default-image.png'; ?>" alt="User Icon">
+</a>
     <h1><?php echo isset($user) ? "WWAGO, " . $user : "USERNAME"; ?></h1>
 </header>
 
