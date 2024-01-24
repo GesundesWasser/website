@@ -137,7 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("s", $enteredPasscode);
     $stmt->execute();
     $stmt->bind_result($username, $userImage, $coins);
-    
+
     if ($stmt->fetch()) {
         // Store the user details in the session
         $_SESSION['user'] = $username;
@@ -147,6 +147,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: stellarlogin");
         exit();
     }
+
+    $stmt->close();
+
+    // Check if the "Remove 10 Coins" button is clicked
+    if (isset($_POST['removeCoins'])) {
+        // Ensure the user has enough coins before subtracting
+        if ($_SESSION['coins'] >= 10) {
+            // Subtract 10 coins
+            $_SESSION['coins'] -= 10;
+
+            // Update the database with the new coin value
+            $updateQuery = "UPDATE users SET coins = ? WHERE username = ?";
+            $updateStmt = $mysqli->prepare($updateQuery);
+            $updateStmt->bind_param("is", $_SESSION['coins'], $_SESSION['user']);
+            $updateStmt->execute();
+            $updateStmt->close();
+        } else {
+            // Handle the case where the user doesn't have enough coins
+            echo "Not enough coins to remove.";
+        }
+    }
+} else {
+    // Handle the case where the form is not submitted
+    header("Location: shoplogin");
+    exit();
+}
     
     $stmt->close();
 } else {
@@ -162,6 +188,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </a>
     <h1><?php echo isset($_SESSION['user']) ? "Hiya! " . $_SESSION['user'] : "USERNAME"; ?></h1>
     <p>Coins: <?php echo isset($_SESSION['coins']) ? $_SESSION['coins'] : 0; ?></p>
+    <!-- Add this button inside the header section -->
+<form method="post" action="">
+    <button type="submit" name="removeCoins">Remove 10 Coins</button>
+</form>
 </header>
 
 <main>
