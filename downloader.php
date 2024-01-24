@@ -98,7 +98,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['user'] = $username;
     } else {
         // Handle the case where an Invalid Password is Detected
-        header("Location: download?downloadpass=1"); // Pass the downloadpass parameter
+        $_SESSION['downloadpass'] = 1;
+        header("Location: download");
         exit();
     }
 
@@ -109,8 +110,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit();
 }
 
-// Check if the downloadpass parameter is set to 1
-if (isset($_GET['downloadpass']) && $_GET['downloadpass'] == 1) {
+// Check if the downloadpass session variable is set to 1
+if (isset($_SESSION['downloadpass']) && $_SESSION['downloadpass'] == 1) {
     // Perform the necessary action for downloadpass = 1
     // You can redirect, display a message, or execute any other code here
     // For now, I'll redirect to the download page with a specific message
@@ -118,6 +119,7 @@ if (isset($_GET['downloadpass']) && $_GET['downloadpass'] == 1) {
     exit();
 }
 ?>
+
 
 <header>
         <!-- Wrapped the img tag with an a tag to make it a link to Google -->
