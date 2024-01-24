@@ -122,11 +122,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "";
     } else {
     // Handle the case where an Invalid Password is Detected
-        header("Location: site");
+        header("Location: stellarlogin");
     }
 } else {
     // Handle the case where the form is not submitted
-    header("Location: site");
+    header("Location: stellarlogin");
     exit(); // Exit to prevent further execution of the script
 }
 ?>
