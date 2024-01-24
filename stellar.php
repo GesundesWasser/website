@@ -103,31 +103,46 @@
 <body>
 
 <?php
+session_start();
+
+// Replace with your actual MySQL database details
+$host = "localhost";
+$username = "web";
+$password = "bodenkapsel";
+$database = "users";
+
+$mysqli = new mysqli($host, $username, $password, $database);
+
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Replace with your desired passcodes and corresponding users
-    $passcodeUserMap = [
-        "wwagotower" => ["user" => "GesundesWasser", "image" => "user1.png"],
-        "mcdonelts" => ["user" => "Jakobsoft", "image" => "user2.png"],
-        "789" => ["user" => "Admin", "image" => "user3.png"]
-    ];
-    
-    // Retrieve the entered passcode from the form
     $enteredPasscode = $_POST["passcode"];
 
-    // Check if the entered passcode is in the array of valid passcodes
-    if (array_key_exists($enteredPasscode, $passcodeUserMap)) {
-        $userData = $passcodeUserMap[$enteredPasscode];
-        $user = $userData["user"];
-        $userImage = $userData["image"];
+    // Query the database to get the username associated with the entered passcode
+    $query = "SELECT username, image FROM users WHERE passcode = ?";
+    $stmt = $mysqli->prepare($query);
+    $stmt->bind_param("s", $enteredPasscode);
+    $stmt->execute();
+    $stmt->bind_result($username, $userImage);
+    
+    if ($stmt->fetch()) {
+        // Store the user in the session
+        $_SESSION['user'] = $username;
+
         echo "";
     } else {
-    // Handle the case where an Invalid Password is Detected
+        // Handle the case where an Invalid Password is Detected
         header("Location: stellarlogin");
+        exit();
     }
+
+    $stmt->close();
 } else {
     // Handle the case where the form is not submitted
     header("Location: stellarlogin");
-    exit(); // Exit to prevent further execution of the script
+    exit();
 }
 ?>
 
