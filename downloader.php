@@ -99,15 +99,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         // Handle the case where an Invalid Password is Detected
         $_SESSION['downloadpass'] = 1;
-        header("Location: download");
-        exit();
     }
 
     $stmt->close();
 } else {
     // Handle the case where the form is not submitted
-    header("Location: download");
-    exit();
+    $_SESSION['downloadpass'] = 1;
 }
 
 // Check if the downloadpass session variable is set to 1
@@ -119,7 +116,6 @@ if (isset($_SESSION['downloadpass']) && $_SESSION['downloadpass'] == 1) {
     exit();
 }
 ?>
-
 
 <header>
         <!-- Wrapped the img tag with an a tag to make it a link to Google -->
