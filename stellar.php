@@ -103,13 +103,16 @@
 <body>
 
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 session_start();
 
 // Replace with your actual MySQL database details
 $host = "localhost";
-$username = "web";
-$password = "bodenkapsel";
-$database = "users";
+$username = "your_username";
+$password = "your_password";
+$database = "your_database";
 
 $mysqli = new mysqli($host, $username, $password, $database);
 
