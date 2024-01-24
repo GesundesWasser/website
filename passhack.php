@@ -3,45 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Page</title>
+    <title>Download Check</title>
 </head>
 <body>
+    <h1>Download Check</h1>
 
-<?php
-// Replace these with your actual database connection details
-$servername = "localhost";
-$username = "web";
-$password = "bodenkapsel";
-$dbname = "users";
+    <?php
+    // Establish a MySQL connection (replace these with your actual database credentials)
+    $servername = "localhost";
+    $username = "web";
+    $password = "bodenkapsel";
+    $database = "users";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+    $conn = new mysqli($servername, $username, $password, $database);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-// Query to check downloadpass value
-$sql = "SELECT downloadpass FROM your_table_name WHERE id = 1"; // Change 'your_table_name' and 'id' accordingly
-$result = $conn->query($sql);
+    // Check if the form is submitted
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Get the user ID from the form
+        $userId = $_POST["userId"];
 
-if ($result->num_rows > 0) {
-    // Output data of each row
-    while ($row = $result->fetch_assoc()) {
-        $downloadpass = $row["downloadpass"];
-        if ($downloadpass == 1) {
-            echo "<p>Download is allowed. Place your download link or button here.</p>";
+        // Perform a SELECT query to check if downloadpass is 1 for the specified user ID
+        $sql = "SELECT * FROM users WHERE id = $userId AND downloadpass = 1";
+        $result = $conn->query($sql);
+
+        // Check the result and send appropriate response
+        if ($result->num_rows > 0) {
+            $message = "Download is allowed for user ID $userId!";
         } else {
-            echo "<p>Download is not allowed.</p>";
+            $message = "Download is not allowed for user ID $userId!";
         }
     }
-} else {
-    echo "No results found.";
-}
+    ?>
 
-$conn->close();
-?>
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <label for="userId">Enter User ID:</label>
+        <input type="text" id="userId" name="userId" required>
+        <button type="submit">Check Download</button>
+    </form>
 
+    <?php
+    // Display the message if it is set
+    if (isset($message)) {
+        echo "<p>$message</p>";
+    }
+
+    $conn->close();
+    ?>
 </body>
 </html>
