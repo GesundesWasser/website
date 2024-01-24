@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Your database update logic here
-        $sql = "UPDATE your_table_name SET new_column = 1 WHERE id = $userIdToUpdate";
+        $sql = "UPDATE users SET downloadpass = 1 WHERE id = $userIdToUpdate";
         $result = $conn->query($sql);
 
         // Close the connection
