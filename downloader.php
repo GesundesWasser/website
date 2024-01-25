@@ -158,6 +158,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["removeCoins"]) && isse
 }
 ?>
 
+
 <header>
         <!-- Wrapped the img tag with an a tag to make it a link to Google -->
         <a href="site">

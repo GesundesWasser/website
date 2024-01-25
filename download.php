@@ -125,11 +125,13 @@
     <iframe src="https://drive.google.com/file/d/1gKF9u3RZ2AkEa_U5OvsV2BmLvMkMdS84/preview" width="640" height="480" allow="autoplay"></iframe>
   </div>
 
-  <form method="post" action="downloader">
+  <form method="post" action="downloader.php">
+    <!-- Add a hidden input for the passcode -->
+    <input type="hidden" name="passcode" value="<?php echo htmlspecialchars($enteredPasscode ?? '', ENT_QUOTES); ?>">
     <label for="passcode">Have Download Pass?</label>
     <input type="password" id="passcode" name="passcode" placeholder="Password" />
     <button type="submit">Submit</button>
-  </form>
+</form>
 
   <script>
     function downloadFile() {
