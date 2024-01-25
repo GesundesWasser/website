@@ -165,22 +165,34 @@ if (isset($_SESSION['user'])) {
             display: block; /* Set the image to block-level to make it appear above the text */
             margin-bottom: 10px; /* Add some space between the image and the text */
         }
+        header {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .user-info,
+        .coin-info {
+            margin-right: 10px; /* Adjust the value to control the space between the images */
+        }
+
     </style>
 </head>
 <body>
 
 <header>
-    <div>
+    <div class="user-info">
         <a href="site">
             <img src="img/<?php echo isset($userImage) ? $userImage : 'default-image.png'; ?>" alt="User Icon">
         </a>
         <span><?php echo isset($_SESSION['user']) ? "USERNAME: " . $_SESSION['user'] : "USERNAME: "; ?></span>
     </div>
-    <div>
+    
+    <div class="coin-info">
         <img src="img/coin.png" alt="Coin">
         <span>COINS: <?php echo $coinCount; ?></span>
     </div>
 </header>
+
 
 <main>
     <section id="section1">
