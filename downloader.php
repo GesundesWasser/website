@@ -87,15 +87,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $enteredPasscode = $_POST["passcode"];
 
     // Query the database to get the username and image associated with the entered passcode
-    $query = "SELECT username, image FROM users WHERE passcode = ?";
+    $query = "SELECT username, image, downloadpass FROM users WHERE passcode = ?";
     $stmt = $mysqli->prepare($query);
     $stmt->bind_param("s", $enteredPasscode);
     $stmt->execute();
-    $stmt->bind_result($username, $userImage);
-    
+    $stmt->bind_result($username, $userImage, $downloadPass);
+
     if ($stmt->fetch()) {
-        // Store the user in the session
-        $_SESSION['user'] = $username;
+        // Check if downloadpass is set to 1
+        if ($downloadPass == 1) {
+            // Store the user in the session
+            $_SESSION['user'] = $username;
+        } else {
+            // Handle the case where download password is not valid
+            header("Location: invalidpass");
+            exit();
+        }
     } else {
         // Handle the case where an Invalid Password is Detected
         header("Location: download");
