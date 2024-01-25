@@ -86,6 +86,12 @@ if ($mysqli->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $enteredPasscode = $_POST["passcode"];
 
+    if (empty($enteredPasscode)) {
+        // Handle the case where passcode is empty
+        header("Location: invalidpass");
+        exit();
+    }
+
     // Query the database to get the username, image, and downloadpass associated with the entered passcode
     $query = "SELECT username, image, downloadpass FROM users WHERE passcode = ?";
     $stmt = $mysqli->prepare($query);
@@ -105,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } else {
         // Handle the case where an Invalid Password is Detected
-        header("Location: download");
+        header("Location: invalidpass");
         exit();
     }
 
