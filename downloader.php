@@ -7,60 +7,99 @@
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="img/favicon.ico" type="img/x-icon">
     <style>
-body {
-    background-color: #222; /* Darker background color */
-    color: #fff; /* White text color for better readability */
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
-}
+        body {
+            background-color: #222;
+            color: #fff;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            padding: 0;
+        }
 
-/* Additional styles for better readability */
-header, nav, main, footer {
-    padding: 20px;
-}
+        header, main, footer {
+            padding: 20px;
+            box-sizing: border-box;
+            max-width: 800px; /* Set your desired max-width */
+            margin: 0; /* Set margin to 0 for left alignment */
+        }
 
-header img {
-            width: 125px;
-            height: 38px;
+        header img {
+            max-width: 80px;
+            height: auto;
             margin-right: 15px;
             vertical-align: middle; /* Align the image vertically */
         }
 
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
+        header h1 {
+            margin: 0;
+            display: inline-block;
+            vertical-align: middle; /* Align the text vertically */
+        }
 
-nav li {
-    display: inline;
-    margin-right: 15px;
-}
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
 
-a {
-    color: #fff; /* White color for links */
-    text-decoration: none;
-}
+        nav li {
+            display: inline;
+            margin-right: 15px;
+        }
 
-button {
-    background-color: #555; /* Darker button color */
-    color: #fff; /* White text color for the button */
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px; /* Rounded corners */
-}
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
 
-/* Darker and smaller text input fields */
-input[type="text"], input[type="password"], textarea {
-    background-color: #333; /* Darker textbox background color */
-    color: #fff; /* White text color for the textbox */
-    padding: 8px;
-    border: none;
-    border-radius: 5px; /* Rounded corners for the textbox */
-    width: 150px; /* Set the width of the textbox */
-}
+        button {
+            background-color: #555;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        input[type="text"], input[type="password"], textarea {
+            background-color: #333;
+            color: #fff;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            width: 150px;
+        }
+
+        main img {
+            max-width: 80px;
+            height: auto;
+            margin-right: 15px;
+            vertical-align: middle; /* Align the image vertically */
+        }
+
+        main h2 {
+            margin: 0;
+            display: inline-block;
+            vertical-align: middle; /* Align the text vertically */
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        section img {
+            max-width: 100%; /* Ensure the image doesn't exceed its original width */
+            height: auto; /* Maintain the aspect ratio */
+            margin-right: 15px;
+            margin-bottom: 15px; /* Add bottom margin to separate image and text */
+            vertical-align: middle; /* Align the image vertically */
+        }
+
+        section#section3 img {
+            display: block; /* Set the image to block-level to make it appear above the text */
+            margin-bottom: 10px; /* Add some space between the image and the text */
+        }
+
     </style>
 </head>
 <body>
