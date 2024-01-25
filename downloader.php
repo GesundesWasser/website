@@ -86,7 +86,7 @@ if ($mysqli->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $enteredPasscode = $_POST["passcode"];
 
-    // Query the database to get the username and image associated with the entered passcode
+    // Query the database to get the username, image, and downloadpass associated with the entered passcode
     $query = "SELECT username, image, downloadpass FROM users WHERE passcode = ?";
     $stmt = $mysqli->prepare($query);
     $stmt->bind_param("s", $enteredPasscode);
@@ -136,6 +136,20 @@ if (isset($_SESSION['user'])) {
 } else {
     $coinCount = 0; // Default value if the user is not logged in
 }
+
+// Process the removal of coins if the "Remove Coins" button is clicked
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["removeCoins"]) && isset($_SESSION['user'])) {
+    // Check if the user is logged in before removing coins
+    $removeCoinsQuery = "UPDATE users SET coins = GREATEST(coins - 10, 0) WHERE username = ?";
+    $removeCoinsStmt = $mysqli->prepare($removeCoinsQuery);
+    $removeCoinsStmt->bind_param("s", $_SESSION['user']);
+    $removeCoinsStmt->execute();
+    $removeCoinsStmt->close();
+    
+    // Redirect to the current page to avoid re-submitting the form
+    header("Location: ".$_SERVER['PHP_SELF']);
+    exit();
+}
 ?>
 
 <header>
@@ -157,6 +171,14 @@ if (isset($_SESSION['user'])) {
             <p>TEXT</p>
             <button onclick="window.location.href='dl/winwowsinstall-1.0desktop-18012024.vbs'">Download</button>
         </section>
+
+        <section id="section3">
+    <h2>Remove Coins</h2>
+    <p>Click the button to remove 10 coins</p>
+    <form method="post" action="">
+        <button type="submit" name="removeCoins">Remove Coins</button>
+    </form>
+</section>
 
         <footer>
         <p>&copy; WWAGO Inc.</p>
