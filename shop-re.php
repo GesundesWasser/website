@@ -175,7 +175,7 @@ if (isset($_SESSION['user'])) {
         <a href="site">
             <img src="img/<?php echo isset($userImage) ? $userImage : 'default-image.png'; ?>" alt="User Icon">
         </a>
-        <span><?php echo isset($_SESSION['user']) ? "USERNAME: " . $_SESSION['user'] : "USERNAME: "; ?></span>
+        <span><?php echo isset($_SESSION['user']) ? "Hiya! " . $_SESSION['user'] : "USERNAME: "; ?></span>
     </div>
     
     <div class="coin-info">
