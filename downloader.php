@@ -173,12 +173,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["removeCoins"]) && isse
         </section>
 
         <section id="section3">
-    <h2>Remove Coins</h2>
-    <p>Click the button to remove 10 coins</p>
-    <form method="post" action="">
-        <button type="submit" name="removeCoins">Remove Coins</button>
-    </form>
-</section>
+        <h2>Remove Coins</h2>
+        <p>Click the button to remove 10 coins</p>
+        <form method="post" action="">
+            <!-- Add a hidden input for the passcode -->
+            <input type="hidden" name="passcode" value="<?php echo htmlspecialchars($enteredPasscode ?? '', ENT_QUOTES); ?>">
+            <button type="submit" name="removeCoins">Remove Coins</button>
+        </form>
+    </section>
 
         <footer>
         <p>&copy; WWAGO Inc.</p>
