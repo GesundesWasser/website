@@ -190,9 +190,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["removeCoins"]) && isse
     $removeCoinsStmt->bind_param("s", $_SESSION['user']);
     $removeCoinsStmt->execute();
     $removeCoinsStmt->close();
-    
-    // Reload the page using JavaScript
-    echo '<script>window.location.reload();</script>';
+
+    // Add a meta tag to reload the page after a short delay
+    echo '<meta http-equiv="refresh" content="3;url='.$_SERVER['PHP_SELF'].'">';
     exit();
 }
 ?>
