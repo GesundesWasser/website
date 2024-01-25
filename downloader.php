@@ -191,8 +191,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["removeCoins"]) && isse
     $removeCoinsStmt->execute();
     $removeCoinsStmt->close();
 
-    // Add a meta tag to reload the page after a short delay
-    echo '<meta http-equiv="refresh" content="3;url='.$_SERVER['PHP_SELF'].'">';
+    // Redirect to the current page after a short delay
+    header("Refresh: 3; url=".$_SERVER['PHP_SELF']);
     exit();
 }
 ?>
