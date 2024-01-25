@@ -77,7 +77,15 @@ if (isset($_SESSION['user'])) {
             background-color: #222;
             color: #fff;
             margin: 0;
+            font-family: 'Arial', sans-serif;
             padding: 0;
+        }
+
+        header, main, footer {
+            padding: 20px;
+            box-sizing: border-box;
+            max-width: 800px; /* Set your desired max-width */
+            margin: 0; /* Set margin to 0 for left alignment */
         }
 
         header img {
@@ -87,18 +95,9 @@ if (isset($_SESSION['user'])) {
             vertical-align: middle; /* Align the image vertically */
         }
 
-        header {
-            font-family: 'Your Preferred Font', sans-serif; /* Replace 'Your Preferred Font' with the actual font you want to use */
-            font-size: 18px; /* Adjust the font size as needed */
-        }
-
-        header h1, header h2 {
+        header h1 {
             margin: 0;
             display: inline-block;
-            vertical-align: middle; /* Align the text vertically */
-        }
-
-        header span {
             vertical-align: middle; /* Align the text vertically */
         }
 
