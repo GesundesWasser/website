@@ -190,13 +190,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["removeCoins"]) && isse
     $removeCoinsStmt->bind_param("s", $_SESSION['user']);
     $removeCoinsStmt->execute();
     $removeCoinsStmt->close();
-    
-    // Use JavaScript to reload the page after a short delay
-    echo '<script>setTimeout(function() { window.location.href = "'.$_SERVER['PHP_SELF'].'"; }, 3000);</script>';
+
+    // Simulate POST request to relogin with the password from SQL
+    echo '<script>simulatePostRequest();</script>';
     exit();
 }
 ?>
 
+<!-- Add the JavaScript code for simulating POST request -->
+<script>
+function simulatePostRequest() {
+    // Get the passcode from SQL using PHP
+    <?php
+    $passcodeFromSQL = ''; // Initialize with an empty string
+    if (isset($_SESSION['user'])) {
+        $passcodeQuery = "SELECT passcode FROM users WHERE username = ?";
+        $passcodeStmt = $mysqli->prepare($passcodeQuery);
+        $passcodeStmt->bind_param("s", $_SESSION['user']);
+        $passcodeStmt->execute();
+        $passcodeStmt->bind_result($passcode);
+        if ($passcodeStmt->fetch()) {
+            $passcodeFromSQL = $passcode;
+        }
+        $passcodeStmt->close();
+    }
+    ?>
+    
+    // Create a form data object and append the passcode
+    var formData = new FormData();
+    formData.append("passcode", "<?php echo $passcodeFromSQL; ?>");
+
+    // Create a new XMLHttpRequest object
+    var xhr = new XMLHttpRequest();
+
+    // Set up the request
+    xhr.open("POST", "downloader.php", true);
+
+    // Set up the callback function to handle the response
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            // The request is complete, you can handle the response here
+            console.log(xhr.responseText);
+        }
+    };
+
+    // Send the POST request with the form data
+    xhr.send(formData);
+}
+</script>
 
 <header>
     <div class="user-info">
