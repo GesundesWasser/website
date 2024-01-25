@@ -191,8 +191,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["removeCoins"]) && isse
     $removeCoinsStmt->execute();
     $removeCoinsStmt->close();
     
-    // Reload the current page
-    echo '<script>window.location.reload();</script>';
+    // Reload the page after a short delay
+    echo '<script>setTimeout(function() { window.location.reload(true); }, 3000);</script>';
     exit();
 }
 ?>
