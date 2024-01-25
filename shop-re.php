@@ -175,7 +175,7 @@ if (isset($_SESSION['user'])) {
     <h1><?php echo isset($_SESSION['user']) ? "Hiya! " . $_SESSION['user'] : "USERNAME"; ?></h1>
     <h2>
         <img src="img/coin.png" alt="Coin">
-        <?php echo isset($_SESSION['user']) ? $_SESSION['user'] . " Coins: " . $coinCount : "USERNAME Coins: " . $coinCount; ?>
+        <?php echo isset($_SESSION['user']) ? $_SESSION['user'] . " Coins: " . $coinCount : "Coins: " . $coinCount; ?>
     </h2>
 </header>
 
