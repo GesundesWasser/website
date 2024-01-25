@@ -165,15 +165,6 @@ if (isset($_SESSION['user'])) {
             display: block; /* Set the image to block-level to make it appear above the text */
             margin-bottom: 10px; /* Add some space between the image and the text */
         }
-        header {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .user-info,
-        .coin-info {
-            margin-right: 10px; /* Adjust the value to control the space between the images */
-        }
 
     </style>
 </head>
@@ -192,7 +183,6 @@ if (isset($_SESSION['user'])) {
         <span>COINS: <?php echo $coinCount; ?></span>
     </div>
 </header>
-
 
 <main>
     <section id="section1">
