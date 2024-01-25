@@ -41,6 +41,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: shoplogin");
     exit();
 }
+
+// Check if the user is logged in before fetching the coin count
+if (isset($_SESSION['user'])) {
+    // Query the database to get the coin count associated with the logged-in user
+    $coinQuery = "SELECT coins FROM users WHERE username = ?";
+    $coinStmt = $mysqli->prepare($coinQuery);
+    $coinStmt->bind_param("s", $_SESSION['user']);
+    $coinStmt->execute();
+    $coinStmt->bind_result($userCoins);
+
+    // Fetch the coin count
+    if ($coinStmt->fetch()) {
+        $coinCount = $userCoins;
+    } else {
+        $coinCount = 0; // Default value if no coins are found
+    }
+
+    $coinStmt->close();
+} else {
+    $coinCount = 0; // Default value if the user is not logged in
+}
 ?>
 
 <!DOCTYPE html>
@@ -150,8 +171,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <header>
     <a href="site">
     <img src="img/<?php echo isset($userImage) ? $userImage : 'default-image.png'; ?>" alt="User Icon">
-</a>
-    <h1><?php echo isset($_SESSION['user']) ? "Hiya! " . $_SESSION['user'] : "USERNAME"; ?></h1>
+    </a>
+    <h1><?php echo isset($_SESSION['user']) ? "Hiya! " . $_SESSION['user'] . " - Coins: " . $coinCount : "USERNAME"; ?></h1>
 </header>
 
 <main>
