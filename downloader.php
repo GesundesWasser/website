@@ -191,8 +191,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["removeCoins"]) && isse
     $removeCoinsStmt->execute();
     $removeCoinsStmt->close();
     
-    // Redirect to the current page to avoid re-submitting the form
-    header("Location: ".$_SERVER['PHP_SELF']);
+    // Reload the current page
+    echo '<script>window.location.reload();</script>';
     exit();
 }
 ?>
