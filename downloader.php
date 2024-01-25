@@ -87,36 +87,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $enteredPasscode = $_POST["passcode"];
 
     // Query the database to get the username and image associated with the entered passcode
-    $query = "SELECT username, image, downloadpass FROM users WHERE passcode = ?";
+    $query = "SELECT username, image FROM users WHERE passcode = ?";
     $stmt = $mysqli->prepare($query);
     $stmt->bind_param("s", $enteredPasscode);
     $stmt->execute();
-    $stmt->bind_result($username, $userImage, $downloadpass);
+    $stmt->bind_result($username, $userImage);
     
-    if ($stmt->fetch() && $downloadpass == 1) {
+    if ($stmt->fetch()) {
         // Store the user in the session
         $_SESSION['user'] = $username;
-        // Check for downloadpass and redirect to Google if it's set to 1
-        header("Location: https://www.google.com");
-        exit();
     } else {
-        // Handle the case where an Invalid Password or downloadpass is not 1
-        $_SESSION['downloadpass'] = 1;
+        // Handle the case where an Invalid Password is Detected
+        header("Location: download");
+        exit();
     }
 
     $stmt->close();
 } else {
     // Handle the case where the form is not submitted
-    $_SESSION['downloadpass'] = 1;
+    header("Location: shoplogin");
+    exit();
 }
 
-// Check if the downloadpass session variable is set to 1
-if (isset($_SESSION['downloadpass']) && $_SESSION['downloadpass'] == 1) {
-    // Perform the necessary action for downloadpass = 1
-    // You can redirect, display a message, or execute any other code here
-    // For now, I'll redirect to the download page with a specific message
-    header("Location: download?message=Downloadpass is set to 1");
-    exit();
+// Check if the user is logged in before fetching the coin count
+if (isset($_SESSION['user'])) {
+    // Query the database to get the coin count associated with the logged-in user
+    $coinQuery = "SELECT coins FROM users WHERE username = ?";
+    $coinStmt = $mysqli->prepare($coinQuery);
+    $coinStmt->bind_param("s", $_SESSION['user']);
+    $coinStmt->execute();
+    $coinStmt->bind_result($userCoins);
+
+    // Fetch the coin count
+    if ($coinStmt->fetch()) {
+        $coinCount = $userCoins;
+    } else {
+        $coinCount = 0; // Default value if no coins are found
+    }
+
+    $coinStmt->close();
+} else {
+    $coinCount = 0; // Default value if the user is not logged in
 }
 ?>
 
