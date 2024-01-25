@@ -105,20 +105,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Store the user in the session
             $_SESSION['user'] = $username;
         } else {
-            // Handle the case where download password is not valid
-            header("Location: invaliddownloadpass");
+            // Handle the case where download Pass is not Valid
+            header("Location: download");
             exit();
         }
     } else {
         // Handle the case where an Invalid Password is Detected
-        header("Location: invalidpassword");
+        header("Location: download");
         exit();
     }
 
     $stmt->close();
 } else {
     // Handle the case where the form is not submitted
-    header("Location: shoplogin");
+    header("Location: download");
     exit();
 }
 
@@ -160,11 +160,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["removeCoins"]) && isse
 
 
 <header>
-        <!-- Wrapped the img tag with an a tag to make it a link to Google -->
+    <div class="user-info">
         <a href="site">
-            <img src="img/wwagoinc.png" alt="WWAGO Inc. Logo">
+            <img src="img/<?php echo isset($userImage) ? $userImage : 'default-image.png'; ?>" alt="User Icon">
         </a>
-    </header>
+        <span><?php echo isset($_SESSION['user']) ? "Hiya! " . $_SESSION['user'] : "USERNAME: "; ?></span>
+    </div>
+    
+    <div class="coin-info">
+        <img src="img/coin.png" alt="Coin">
+        <span>COINS: <?php echo $coinCount; ?></span>
+    </div>
+</header>
 
 <main>
         <section id="section1">
