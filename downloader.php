@@ -106,12 +106,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['user'] = $username;
         } else {
             // Handle the case where download password is not valid
-            header("Location: invalidpass");
+            header("Location: invaliddownloadpass");
             exit();
         }
     } else {
         // Handle the case where an Invalid Password is Detected
-        header("Location: invalidpass");
+        header("Location: invalidpassword");
         exit();
     }
 
