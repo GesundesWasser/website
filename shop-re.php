@@ -169,14 +169,16 @@ if (isset($_SESSION['user'])) {
 <body>
 
 <header>
-    <a href="site">
-        <img src="img/<?php echo isset($userImage) ? $userImage : 'default-image.png'; ?>" alt="User Icon">
-    </a>
-    <h1><?php echo isset($_SESSION['user']) ? "Hiya! " . $_SESSION['user'] : "USERNAME"; ?></h1>
-    <h2>
+    <div>
+        <a href="site">
+            <img src="img/<?php echo isset($userImage) ? $userImage : 'default-image.png'; ?>" alt="User Icon">
+        </a>
+        <span><?php echo isset($_SESSION['user']) ? "USERNAME: " . $_SESSION['user'] : "USERNAME: "; ?></span>
+    </div>
+    <div>
         <img src="img/coin.png" alt="Coin">
-        <?php echo isset($_SESSION['user']) ? $_SESSION['user'] . " Coins: " . $coinCount : "Coins: " . $coinCount; ?>
-    </h2>
+        <span>COINS: <?php echo $coinCount; ?></span>
+    </div>
 </header>
 
 <main>
