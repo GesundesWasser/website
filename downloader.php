@@ -190,9 +190,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["removeCoins"]) && isse
     $removeCoinsStmt->bind_param("s", $_SESSION['user']);
     $removeCoinsStmt->execute();
     $removeCoinsStmt->close();
-
-    // Redirect to the current page after a short delay
-    header("Refresh: 3; url=".$_SERVER['PHP_SELF']);
+    
+    // Use JavaScript to reload the page after a short delay
+    echo '<script>setTimeout(function() { window.location.href = "'.$_SERVER['PHP_SELF'].'"; }, 3000);</script>';
     exit();
 }
 ?>
