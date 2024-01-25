@@ -192,7 +192,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["removeCoins"]) && isse
     $removeCoinsStmt->close();
 
     // Simulate POST request to relogin with the password from SQL
-    echo '<script>simulatePostRequest();</script>';
+    echo '<script>';
+    echo 'function simulatePostRequest() {';
+    echo '    var passcodeFromSQL = "' . $passcodeFromSQL . '";';
+    echo '    var formData = new FormData();';
+    echo '    formData.append("passcode", passcodeFromSQL);';
+    echo '    var xhr = new XMLHttpRequest();';
+    echo '    xhr.open("POST", "downloader.php", true);';
+    echo '    xhr.onreadystatechange = function() {';
+    echo '        if (xhr.readyState === 4) {';
+    echo '            console.log(xhr.responseText);';
+    echo '        }';
+    echo '    };';
+    echo '    xhr.send(formData);';
+    echo '}';
+    echo 'simulatePostRequest();';
+    echo '</script>';
     exit();
 }
 ?>
