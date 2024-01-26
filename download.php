@@ -145,10 +145,10 @@
     <iframe src="https://drive.google.com/file/d/1gKF9u3RZ2AkEa_U5OvsV2BmLvMkMdS84/preview" width="640" height="480" allow="autoplay"></iframe>
   </div>
 
-  <button class="download-button" id="downloadButton" onclick="downloadFile()">Download Now</button>
+  <button class="download-button" id="downloadButton" onclick="startDownload()">Download Now</button>
 
   <script>
-    function downloadFile() {
+    function startDownload() {
       const progressBar = document.querySelector('.progress-bar');
       const statusText = document.querySelector('.status-text');
       const completionMessage = document.getElementById('completionMessage');
@@ -157,14 +157,14 @@
       
       const downloadDuration = 600000;
       const interval = 1000;
-      
       let progress = 0;
-      
+
       const updateProgressBar = () => {
         progress += (interval / downloadDuration) * 100;
         progressBar.style.width = `${progress}%`;
-      
+
         if (progress < 100) {
+          // Continue updating the progress bar
         } else {
           clearInterval(progressInterval);
           statusText.textContent = 'Download Complete!';
@@ -174,7 +174,7 @@
           passcodeForm.style.display = 'block'; // Display the passcode form
         }
       };
-      
+
       const progressInterval = setInterval(updateProgressBar, interval);
     }
   </script>
