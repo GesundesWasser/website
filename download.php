@@ -154,7 +154,7 @@
       const completionMessage = document.getElementById('completionMessage');
       const downloadButton = document.getElementById('downloadButton');
       const passcodeForm = document.getElementById('passcodeForm');
-      
+
       const downloadDuration = 600000;
       const interval = 1000;
       let progress = 0;
@@ -170,8 +170,8 @@
           statusText.textContent = 'Download Complete!';
           statusText.style.color = 'green';
           completionMessage.style.display = 'block';
-          downloadButton.style.display = 'block';
-          passcodeForm.style.display = 'block'; // Display the passcode form
+          passcodeForm.style.display = 'flex'; // Display the passcode form
+          downloadButton.style.display = 'none'; // Hide the download button
         }
       };
 
