@@ -131,7 +131,7 @@
 
   <div class="completion-message" id="completionMessage">Download Complete!</div>
 
-  <div class="passcode-form">
+  <div class="passcode-form" id="passcodeForm" style="display: none;">
     <form method="post" action="downloader.php">
       <!-- Add a hidden input for the passcode -->
       <input type="hidden" name="passcode" value="<?php echo htmlspecialchars($enteredPasscode ?? '', ENT_QUOTES); ?>">
@@ -149,36 +149,34 @@
 
   <script>
     function downloadFile() {
-      const link = document.createElement('a');
-      link.href = 'downloader';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      const progressBar = document.querySelector('.progress-bar');
+      const statusText = document.querySelector('.status-text');
+      const completionMessage = document.getElementById('completionMessage');
+      const downloadButton = document.getElementById('downloadButton');
+      const passcodeForm = document.getElementById('passcodeForm');
+      
+      const downloadDuration = 600000;
+      const interval = 1000;
+      
+      let progress = 0;
+      
+      const updateProgressBar = () => {
+        progress += (interval / downloadDuration) * 100;
+        progressBar.style.width = `${progress}%`;
+      
+        if (progress < 100) {
+        } else {
+          clearInterval(progressInterval);
+          statusText.textContent = 'Download Complete!';
+          statusText.style.color = 'green';
+          completionMessage.style.display = 'block';
+          downloadButton.style.display = 'block';
+          passcodeForm.style.display = 'block'; // Display the passcode form
+        }
+      };
+      
+      const progressInterval = setInterval(updateProgressBar, interval);
     }
-
-    const progressBar = document.querySelector('.progress-bar');
-    const statusText = document.querySelector('.status-text');
-    const completionMessage = document.getElementById('completionMessage');
-    const downloadButton = document.getElementById('downloadButton');
-    const downloadDuration = 10;//600000;
-    const interval = 1000;
-
-    let progress = 0;
-
-    const updateProgressBar = () => {
-      progress += (interval / downloadDuration) * 100;
-      progressBar.style.width = `${progress}%`;
-
-      if (progress < 100) {} else {
-        clearInterval(progressInterval);
-        statusText.textContent = 'Download Complete!';
-        statusText.style.color = 'green';
-        completionMessage.style.display = 'block';
-        downloadButton.style.display = 'block';
-      }
-    };
-
-    const progressInterval = setInterval(updateProgressBar, interval);
   </script>
 </body>
 
