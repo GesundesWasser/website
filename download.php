@@ -1,4 +1,6 @@
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +21,10 @@
       flex-direction: column;
     }
 
-    header, nav, main, footer {
+    header,
+    nav,
+    main,
+    footer {
       padding: 20px;
     }
 
@@ -102,6 +107,13 @@
       display: none;
     }
 
+    .passcode-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+
     .download-button {
       display: none;
       margin-top: 10px;
@@ -119,24 +131,26 @@
 
   <div class="completion-message" id="completionMessage">Download Complete!</div>
 
-  <button class="download-button" id="downloadButton" onclick="downloadFile()">Download Now</button>
+  <div class="passcode-form">
+    <form method="post" action="downloader.php">
+      <!-- Add a hidden input for the passcode -->
+      <input type="hidden" name="passcode" value="<?php echo htmlspecialchars($enteredPasscode ?? '', ENT_QUOTES); ?>">
+      <label for="passcode">Have Download Pass?</label>
+      <input type="password" id="passcode" name="passcode" placeholder="Password" />
+      <button type="submit">Submit</button>
+    </form>
+  </div>
 
   <div class="video-container">
     <iframe src="https://drive.google.com/file/d/1gKF9u3RZ2AkEa_U5OvsV2BmLvMkMdS84/preview" width="640" height="480" allow="autoplay"></iframe>
   </div>
 
-  <form method="post" action="downloader.php">
-    <!-- Add a hidden input for the passcode -->
-    <input type="hidden" name="passcode" value="<?php echo htmlspecialchars($enteredPasscode ?? '', ENT_QUOTES); ?>">
-    <label for="passcode">Have Download Pass?</label>
-    <input type="password" id="passcode" name="passcode" placeholder="Password" />
-    <button type="submit">Submit</button>
-</form>
+  <button class="download-button" id="downloadButton" onclick="downloadFile()">Download Now</button>
 
   <script>
     function downloadFile() {
       const link = document.createElement('a');
-      link.href = 'downloader'; 
+      link.href = 'downloader';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -155,8 +169,7 @@
       progress += (interval / downloadDuration) * 100;
       progressBar.style.width = `${progress}%`;
 
-      if (progress < 100) {
-      } else {
+      if (progress < 100) {} else {
         clearInterval(progressInterval);
         statusText.textContent = 'Download Complete!';
         statusText.style.color = 'green';
