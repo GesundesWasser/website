@@ -23,6 +23,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Query the database to get the hashed password and image associated with the entered username
     $query = "SELECT passcode, image FROM users WHERE username = ?";
     $stmt = $mysqli->prepare($query);
+
+    if (!$stmt) {
+        die("Error in query preparation: " . $mysqli->error);
+    }
+
     $stmt->bind_param("s", $enteredUsername);
     $stmt->execute();
     $stmt->bind_result($hashedPassword, $userImage);
@@ -32,14 +37,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($enteredPasscode, $hashedPassword)) {
             // Password is correct, store the user in the session
             $_SESSION['user'] = $enteredUsername;
+
             // Fetch additional user information
             $userQuery = "SELECT coinCount, image FROM users WHERE username = ?";
             $userStmt = $mysqli->prepare($userQuery);
+
+            if (!$userStmt) {
+                die("Error in user query preparation: " . $mysqli->error);
+            }
+
             $userStmt->bind_param("s", $enteredUsername);
             $userStmt->execute();
             $userStmt->bind_result($coinCount, $userImage);
             $userStmt->fetch();
             $userStmt->close();
+
             echo "Login Successful";
         } else {
             // Handle the case where an Invalid Password is Detected
@@ -58,6 +70,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $loggedInUser = $_SESSION['user'];
         $userQuery = "SELECT coinCount, image FROM users WHERE username = ?";
         $userStmt = $mysqli->prepare($userQuery);
+
+        if (!$userStmt) {
+            die("Error in user query preparation: " . $mysqli->error);
+        }
+
         $userStmt->bind_param("s", $loggedInUser);
         $userStmt->execute();
         $userStmt->bind_result($coinCount, $userImage);
@@ -95,7 +112,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </header>
 
-        <!-- Your main content here -->
         <main>
             <section id="section1">
                 <h2>SECTION1</h2>
