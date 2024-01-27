@@ -26,19 +26,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $stmt->bind_result($username, $hashedPassword, $userImage);
     
-    if ($stmt->fetch() && password_verify($enteredPasscode, $hashedPassword)) {
-        // Password is correct, store the user in the session
-        $_SESSION['user'] = $username;
+    if ($stmt->fetch()) {
+        if (password_verify($enteredPasscode, $hashedPassword)) {
+            // Password is correct, store the user in the session
+            $_SESSION['user'] = $username;
+        } else {
+            // Handle the case where an Invalid Password is Detected
+            echo "Invalid Password";
+            exit();
+        }
     } else {
-        // Handle the case where an Invalid Password is Detected
-        header("Location: shoplogin");
+        // Handle the case where an Invalid Passcode is Detected
+        echo "Invalid Passcode";
         exit();
     }
 
     $stmt->close();
 } else {
     // Handle the case where the form is not submitted
-    header("Location: shoplogin");
+    echo "NO FORM SUBMITTED";
     exit();
 }
 
@@ -62,8 +68,10 @@ if (isset($_SESSION['user'])) {
 } else {
     $coinCount = 0; // Default value if the user is not logged in
 }
-?>
 
+// Close the database connection
+$mysqli->close();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
