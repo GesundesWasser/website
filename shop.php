@@ -26,10 +26,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $stmt->bind_result($hashedPassword);
     
-    if ($stmt->fetch() && password_verify($enteredPasscode, $hashedPassword)) {
-        // Password is correct, store the user in the session
-        $_SESSION['user'] = $username;
-        echo "Login Successful";
+    if ($stmt->fetch()) {
+        echo "Entered Password: $enteredPasscode<br>";
+        echo "Stored Password: $hashedPassword<br>";
+
+        if (password_verify($enteredPasscode, $hashedPassword)) {
+            // Password is correct, store the user in the session
+            $_SESSION['user'] = $username;
+            echo "Login Successful";
+        } else {
+            // Handle the case where an Invalid Password is Detected
+            echo "Invalid Password";
+        }
     } else {
         // Handle the case where an Invalid Password is Detected
         echo "Invalid Password";
