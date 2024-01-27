@@ -14,6 +14,9 @@ if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
 
+// Default image filename
+$defaultImage = '/img/default_user.png'; // Change this to the actual path of your default image
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $enteredPasscode = $_POST["passcode"];
@@ -31,10 +34,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Username '$username' is already taken. Please choose a different username.";
     } else {
         // Handle file upload for image
-        $imageFileName = null; // Default value if no image is uploaded
+        $imageFileName = $defaultImage; // Default value if no image is uploaded
 
         if ($_FILES['image']['error'] == UPLOAD_ERR_OK) {
-            $uploadDir = 'path_to_your_upload_directory/'; // Change this to the actual upload directory
+            $uploadDir = '/absolute/path/to/uploaded_files/'; // Change this to the actual upload directory
+
+            // Check if the directory exists, create it if necessary
+            if (!file_exists($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+
+            // Append the basename of the uploaded file to the upload directory
             $imageFileName = $uploadDir . basename($_FILES['image']['name']);
 
             if (move_uploaded_file($_FILES['image']['tmp_name'], $imageFileName)) {
@@ -66,6 +76,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Example form:
     ?>
+    <form method="post" action="" enctype="multipart/form-data">
+        Username: <input type="text" name="username"><br>
+        Password: <input type="password" name="passcode"><br>
+        Image: <input type="file" name="image"><br>
+        <input type="submit" value="Register">
+    </form>
+    <?php
+}
+
+// Close the database connection
+$mysqli->close();
+?>
     <form method="post" action="" enctype="multipart/form-data">
         Username: <input type="text" name="username"><br>
         Password: <input type="password" name="passcode"><br>
