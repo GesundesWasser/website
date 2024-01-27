@@ -27,9 +27,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_result($hashedPassword);
     
     if ($stmt->fetch()) {
+        // Debug information
         echo "Entered Password: $enteredPasscode<br>";
-        echo "Stored Password: $hashedPassword<br>";
+        echo "Stored Password from Database: $hashedPassword<br>";
 
+        // Direct comparison for debugging
         if (password_verify($enteredPasscode, $hashedPassword)) {
             // Password is correct, store the user in the session
             $_SESSION['user'] = $username;
