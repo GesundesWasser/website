@@ -70,33 +70,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $insertStmt->close();
     }
-} else {
-    // Display the registration form
-    // ...
-
-    // Example form:
-    ?>
-    <form method="post" action="" enctype="multipart/form-data">
-        Username: <input type="text" name="username"><br>
-        Password: <input type="password" name="passcode"><br>
-        Image: <input type="file" name="image"><br>
-        <input type="submit" value="Register">
-    </form>
-    <?php
 }
 
 // Close the database connection
 $mysqli->close();
 ?>
-    <form method="post" action="" enctype="multipart/form-data">
-        Username: <input type="text" name="username"><br>
-        Password: <input type="password" name="passcode"><br>
-        Image: <input type="file" name="image"><br>
-        <input type="submit" value="Register">
-    </form>
-    <?php
-}
 
-// Close the database connection
-$mysqli->close();
-?>
+<!-- Display the registration form -->
+<form method="post" action="" enctype="multipart/form-data">
+    Username: <input type="text" name="username"><br>
+    Password: <input type="password" name="passcode"><br>
+    Image: <input type="file" name="image"><br>
+    <input type="submit" value="Register">
+</form>
