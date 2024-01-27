@@ -21,11 +21,12 @@ try {
     move_uploaded_file($_FILES['image']['tmp_name'], $target_file);
 
     // Insert user data into the database
-    $stmt = $conn->prepare("INSERT INTO users (username, passcode, profile_image) VALUES (:username, :passcode, :image)");
+    $stmt = $conn->prepare("INSERT INTO users (username, passcode, image) VALUES (:username, :passcode, :image)");
     $stmt->bindParam(':username', $username);
     $stmt->bindParam(':passcode', $passcode);
-    $stmt->bindParam(':profile_image', $image);
+    $stmt->bindParam(':image', $image);
 
+    // Execute the statement
     $stmt->execute();
 
     echo "Signup successful!";
