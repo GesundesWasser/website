@@ -19,57 +19,26 @@ if ($mysqli->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $enteredPasscode = $_POST["passcode"];
 
-    // Query the database to get the username and hashed password associated with the entered passcode
-    $query = "SELECT username, passcode, image FROM users WHERE passcode = ?";
+    // Query the database to get the hashed password associated with the entered passcode
+    $query = "SELECT passcode FROM users WHERE passcode = ?";
     $stmt = $mysqli->prepare($query);
     $stmt->bind_param("s", $enteredPasscode);
     $stmt->execute();
-    $stmt->bind_result($username, $hashedPassword, $userImage);
+    $stmt->bind_result($hashedPassword);
     
-    if ($stmt->fetch()) {
-        echo "Stored Password: $hashedPassword<br>";
-        echo "Entered Password: $enteredPasscode<br>";
-        if (password_verify($enteredPasscode, $hashedPassword)) {
-            // Password is correct, store the user in the session
-            $_SESSION['user'] = $username;
-            echo "Login Successful";
-        } else {
-            // Handle the case where an Invalid Password is Detected
-            echo "Invalid Password";
-            exit();
-        }
+    if ($stmt->fetch() && password_verify($enteredPasscode, $hashedPassword)) {
+        // Password is correct, store the user in the session
+        $_SESSION['user'] = $username;
+        echo "Login Successful";
     } else {
-        // Handle the case where an Invalid Passcode is Detected
-        echo "Invalid Passcode";
-        exit();
+        // Handle the case where an Invalid Password is Detected
+        echo "Invalid Password";
     }
 
     $stmt->close();
 } else {
     // Handle the case where the form is not submitted
-    header("Location: shoplogin");
-    exit();
-}
-
-// Check if the user is logged in before fetching the coin count
-if (isset($_SESSION['user'])) {
-    // Query the database to get the coin count associated with the logged-in user
-    $coinQuery = "SELECT coins FROM users WHERE username = ?";
-    $coinStmt = $mysqli->prepare($coinQuery);
-    $coinStmt->bind_param("s", $_SESSION['user']);
-    $coinStmt->execute();
-    $coinStmt->bind_result($userCoins);
-
-    // Fetch the coin count
-    if ($coinStmt->fetch()) {
-        $coinCount = $userCoins;
-    } else {
-        $coinCount = 0; // Default value if no coins are found
-    }
-
-    $coinStmt->close();
-} else {
-    $coinCount = 0; // Default value if the user is not logged in
+    echo "Form not submitted";
 }
 
 // Close the database connection
