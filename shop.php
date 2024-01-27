@@ -38,6 +38,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Password is correct, store the user in the session
             $_SESSION['user'] = $enteredUsername;
 
+            // Free the result set
+            $stmt->free_result();
+
             // Fetch additional user information
             $userQuery = "SELECT coinCount, image FROM users WHERE username = ?";
             $userStmt = $mysqli->prepare($userQuery);
