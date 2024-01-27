@@ -47,12 +47,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Handle file upload for image with user ID as filename
             $uploadDir = '/var/www/upload/'; // Change this to the actual upload directory
-            $imageFileName = $uploadDir . $userId . '.png';
 
-            if (move_uploaded_file($_FILES['image']['tmp_name'], $imageFileName)) {
-                echo "Image uploaded successfully.";
+            // Check if the directory exists, create it if necessary
+            if (!file_exists($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+
+            // Check if the uploaded file is a PNG
+            $allowedExtensions = ['png'];
+            $uploadedFileExtension = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
+
+            if (in_array($uploadedFileExtension, $allowedExtensions)) {
+                $imageFileName = $uploadDir . $userId . '.png';
+
+                if (move_uploaded_file($_FILES['image']['tmp_name'], $imageFileName)) {
+                    echo "Image uploaded successfully.";
+                } else {
+                    echo "Error uploading image.";
+                }
             } else {
-                echo "Error uploading image.";
+                echo "Only PNG files are allowed.";
             }
 
             echo "User '$username' (ID: $userId) successfully registered.";
@@ -72,6 +86,6 @@ $mysqli->close();
 <form method="post" action="" enctype="multipart/form-data">
     Username: <input type="text" name="username"><br>
     Password: <input type="password" name="passcode"><br>
-    Image: <input type="file" name="image"><br>
+    Image: <input type="file" name="image" accept=".png"><br> <!-- Restrict file selection to PNG files -->
     <input type="submit" value="Register">
 </form>
