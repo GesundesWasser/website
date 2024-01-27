@@ -33,26 +33,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($userCount > 0) {
         echo "Username '$username' is already taken. Please choose a different username.";
     } else {
-        // Handle file upload for image
-        $imageFileName = $defaultImage; // Default value if no image is uploaded
+// Handle file upload for image
+$imageFileName = $defaultImage; // Default value if no image is uploaded
 
-        if ($_FILES['image']['error'] == UPLOAD_ERR_OK) {
-            $uploadDir = '/var/www/upload'; // Change this to the actual upload directory
+if ($_FILES['image']['error'] == UPLOAD_ERR_OK) {
+    $uploadDir = '/var/www/upload/'; // Change this to the actual upload directory
 
-            // Check if the directory exists, create it if necessary
-            if (!file_exists($uploadDir)) {
-                mkdir($uploadDir, 0755, true);
-            }
+    // Check if the directory exists, create it if necessary
+    if (!file_exists($uploadDir)) {
+        mkdir($uploadDir, 0755, true);
+    }
 
-            // Append the basename of the uploaded file to the upload directory
-            $imageFileName = $uploadDir . basename($_FILES['image']['name']);
+    // Append the basename of the uploaded file to the upload directory
+    $imageFileName = $uploadDir . basename($_FILES['image']['name']);
 
-            if (move_uploaded_file($_FILES['image']['tmp_name'], $imageFileName)) {
-                echo "Image uploaded successfully.";
-            } else {
-                echo "Error uploading image.";
-            }
-        }
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $imageFileName)) {
+        echo "Image uploaded successfully.";
+    } else {
+        echo "Error uploading image.";
+    }
+}
 
         // Hash the password before storing it
         $hashedPassword = password_hash($enteredPasscode, PASSWORD_BCRYPT);
