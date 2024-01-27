@@ -18,30 +18,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $enteredPasscode = $_POST["passcode"];
 
-    // Hash the password before storing it
-    $hashedPassword = password_hash($enteredPasscode, PASSWORD_BCRYPT);
+    // Check if the username already exists
+    $checkQuery = "SELECT COUNT(*) FROM users WHERE username = ?";
+    $checkStmt = $mysqli->prepare($checkQuery);
+    $checkStmt->bind_param("s", $username);
+    $checkStmt->execute();
+    $checkStmt->bind_result($userCount);
+    $checkStmt->fetch();
+    $checkStmt->close();
 
-    // Insert the user into the database with the hashed password
-    $insertQuery = "INSERT INTO users (username, passcode) VALUES (?, ?)";
-    $insertStmt = $mysqli->prepare($insertQuery);
-    $insertStmt->bind_param("ss", $username, $hashedPassword);
-
-    if ($insertStmt->execute()) {
-        echo "User successfully registered.";
+    if ($userCount > 0) {
+        echo "Username '$username' is already taken. Please choose a different username.";
     } else {
-        echo "Error during registration: " . $insertStmt->error;
-    }
+        // Handle file upload for image
+        $imageFileName = null; // Default value if no image is uploaded
 
-    $insertStmt->close();
+        if ($_FILES['image']['error'] == UPLOAD_ERR_OK) {
+            $uploadDir = 'path_to_your_upload_directory/'; // Change this to the actual upload directory
+            $imageFileName = $uploadDir . basename($_FILES['image']['name']);
+
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $imageFileName)) {
+                echo "Image uploaded successfully.";
+            } else {
+                echo "Error uploading image.";
+            }
+        }
+
+        // Hash the password before storing it
+        $hashedPassword = password_hash($enteredPasscode, PASSWORD_BCRYPT);
+
+        // Insert the user into the database with the hashed password and image filename
+        $insertQuery = "INSERT INTO users (username, passcode, image) VALUES (?, ?, ?)";
+        $insertStmt = $mysqli->prepare($insertQuery);
+        $insertStmt->bind_param("sss", $username, $hashedPassword, $imageFileName);
+
+        if ($insertStmt->execute()) {
+            echo "User '$username' successfully registered.";
+        } else {
+            echo "Error during registration: " . $insertStmt->error;
+        }
+
+        $insertStmt->close();
+    }
 } else {
     // Display the registration form
     // ...
 
     // Example form:
     ?>
-    <form method="post" action="">
+    <form method="post" action="" enctype="multipart/form-data">
         Username: <input type="text" name="username"><br>
         Password: <input type="password" name="passcode"><br>
+        Image: <input type="file" name="image"><br>
         <input type="submit" value="Register">
     </form>
     <?php
