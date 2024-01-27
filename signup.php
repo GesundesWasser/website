@@ -61,6 +61,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $imageFileName = $uploadDir . $userId . '.png';
 
                 if (move_uploaded_file($_FILES['image']['tmp_name'], $imageFileName)) {
+                    // Update the user's image path in the database
+                    $updateImageQuery = "UPDATE users SET image = ? WHERE id = ?";
+                    $updateImageStmt = $mysqli->prepare($updateImageQuery);
+                    $updateImageStmt->bind_param("si", $imageFileName, $userId);
+                    $updateImageStmt->execute();
+                    $updateImageStmt->close();
+
                     echo "Image uploaded successfully.";
                 } else {
                     echo "Error uploading image.";
