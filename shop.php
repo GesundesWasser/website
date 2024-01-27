@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->free_result();
 
             // Fetch additional user information
-            $userQuery = "SELECT coinCount, image FROM users WHERE username = ?";
+            $userQuery = "SELECT coins, image FROM users WHERE username = ?";
             $userStmt = $mysqli->prepare($userQuery);
 
             if (!$userStmt) {
@@ -69,9 +69,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
     // Check if the user is logged in
     if (isset($_SESSION['user'])) {
-        // Fetch user information (coinCount and userImage) from the database
+        // Fetch user information (coins and userImage) from the database
         $loggedInUser = $_SESSION['user'];
-        $userQuery = "SELECT coinCount, image FROM users WHERE username = ?";
+        $userQuery = "SELECT coins, image FROM users WHERE username = ?";
         $userStmt = $mysqli->prepare($userQuery);
 
         if (!$userStmt) {
