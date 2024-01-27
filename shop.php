@@ -19,15 +19,15 @@ if ($mysqli->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $enteredPasscode = $_POST["passcode"];
 
-    // Query the database to get the username and image associated with the entered passcode
-    $query = "SELECT username, image FROM users WHERE passcode = ?";
+    // Query the database to get the username and hashed password associated with the entered passcode
+    $query = "SELECT username, passcode, image FROM users WHERE passcode = ?";
     $stmt = $mysqli->prepare($query);
     $stmt->bind_param("s", $enteredPasscode);
     $stmt->execute();
-    $stmt->bind_result($username, $userImage);
+    $stmt->bind_result($username, $hashedPassword, $userImage);
     
-    if ($stmt->fetch()) {
-        // Store the user in the session
+    if ($stmt->fetch() && password_verify($enteredPasscode, $hashedPassword)) {
+        // Password is correct, store the user in the session
         $_SESSION['user'] = $username;
     } else {
         // Handle the case where an Invalid Password is Detected
