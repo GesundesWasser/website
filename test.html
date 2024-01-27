@@ -1,24 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Replace Button with Form</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Scrollbar</title>
+  <style>
+    /* Custom scrollbar track */
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    /* Custom scrollbar handle */
+    ::-webkit-scrollbar-thumb {
+      background-color: #fff; /* Set the background color to white */
+      border-radius: 6px;
+    }
+
+    /* Custom scrollbar track on hover */
+    ::-webkit-scrollbar-track:hover {
+      background-color: #f1f1f1;
+    }
+
+    /* Custom scrollbar handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: #ccc; /* Set the hover background color to a light gray */
+    }
+
+    /* Custom scrollbar corner */
+    ::-webkit-scrollbar-corner {
+      background-color: #ecf0f1;
+    }
+
+    body {
+      height: 200vh; /* Add enough content to make scrolling necessary */
+      margin: 0;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+  </style>
 </head>
 <body>
-
-<!-- Replace Button with Form -->
-<form action="/your-action-endpoint" method="post">
-    <!-- Your input fields go here -->
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required>
-
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-
-    <!-- Submit button -->
-    <input type="submit" value="Submit">
-</form>
-
+  <h1>Custom Scrollbar Example</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae justo nec mi varius hendrerit. Suspendisse potenti. Sed eu mauris sed lectus interdum sodales. Nunc ut dui vitae nisi fermentum fermentum at at mi. Nam vehicula lacus non fringilla pharetra. Suspendisse potenti. Vestibulum vestibulum, tortor id varius fringilla, odio libero egestas turpis, non dictum justo dolor ac justo.</p>
 </body>
 </html>
