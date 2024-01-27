@@ -94,31 +94,23 @@
             margin-bottom: 15px; /* Add bottom margin to separate image and text */
             vertical-align: middle; /* Align the image vertically */
         }
-            /* Custom scrollbar track */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
 
-    /* Custom scrollbar handle */
-    ::-webkit-scrollbar-thumb {
-      background-color: #fff; /* Set the background color to white */
-      border-radius: 6px;
-    }
+        body::-webkit-scrollbar {
+            width: 8px;
+        }
 
-    /* Custom scrollbar track on hover */
-    ::-webkit-scrollbar-track:hover {
-      background-color: #f1f1f1;
-    }
+        body::-webkit-scrollbar-thumb {
+            background-color: #fff;
+            border-radius: 6px;
+        }
 
-    /* Custom scrollbar handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-      background-color: #ccc; /* Set the hover background color to a light gray */
-    }
+        body::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
 
-    /* Custom scrollbar corner */
-    ::-webkit-scrollbar-corner {
-      background-color: #ecf0f1;
-    }
+        body::-webkit-scrollbar-track-piece {
+            background-color: transparent;
+        }
     </style>
 </head>
 <body>

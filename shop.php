@@ -165,7 +165,22 @@ if (isset($_SESSION['user'])) {
             display: block; /* Set the image to block-level to make it appear above the text */
             margin-bottom: 10px; /* Add some space between the image and the text */
         }
+        body::-webkit-scrollbar {
+            width: 8px;
+        }
 
+        body::-webkit-scrollbar-thumb {
+            background-color: #fff;
+            border-radius: 6px;
+        }
+
+        body::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        body::-webkit-scrollbar-track-piece {
+            background-color: transparent;
+        }
     </style>
 </head>
 <body>
