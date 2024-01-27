@@ -17,38 +17,49 @@ if ($mysqli->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $enteredUsername = $_POST["username"];
     $enteredPasscode = $_POST["passcode"];
 
-    // Query the database to get the hashed password associated with the entered passcode
-    $query = "SELECT passcode FROM users WHERE passcode = ?";
+    // Query the database to get the hashed password associated with the entered username
+    $query = "SELECT passcode FROM users WHERE username = ?";
     $stmt = $mysqli->prepare($query);
-    $stmt->bind_param("s", $enteredPasscode);
+    $stmt->bind_param("s", $enteredUsername);
     $stmt->execute();
     $stmt->bind_result($hashedPassword);
     
     if ($stmt->fetch()) {
         // Debug information
+        echo "Entered Username: $enteredUsername<br>";
         echo "Entered Password: $enteredPasscode<br>";
         echo "Stored Password from Database: $hashedPassword<br>";
 
-        // Direct comparison for debugging
+        // Verify the entered password against the stored hash
         if (password_verify($enteredPasscode, $hashedPassword)) {
             // Password is correct, store the user in the session
-            $_SESSION['user'] = $username;
+            $_SESSION['user'] = $enteredUsername;
             echo "Login Successful";
         } else {
             // Handle the case where an Invalid Password is Detected
             echo "Invalid Password";
         }
     } else {
-        // Handle the case where an Invalid Password is Detected
-        echo "Invalid Password";
+        // Handle the case where an Invalid Username is Detected
+        echo "Invalid Username";
     }
 
     $stmt->close();
 } else {
-    // Handle the case where the form is not submitted
-    echo "Form not submitted";
+    // Display the login form
+    // ...
+
+    // Example form:
+    ?>
+    <form method="post" action="">
+        Username: <input type="text" name="username"><br>
+        Password: <input type="password" name="passcode"><br>
+        <input type="submit" value="Login">
+    </form>
+    <?php
 }
 
 // Close the database connection
