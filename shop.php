@@ -44,41 +44,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt->close();
 } else {
-    // Display the login form
+    // Check if the user is logged in
+    if (isset($_SESSION['user'])) {
+        // Fetch user information (coinCount and userImage) from the database
+        $loggedInUser = $_SESSION['user'];
+        $userQuery = "SELECT coinCount, image FROM users WHERE username = ?";
+        $userStmt = $mysqli->prepare($userQuery);
+        $userStmt->bind_param("s", $loggedInUser);
+        $userStmt->execute();
+        $userStmt->bind_result($coinCount, $userImage);
+        $userStmt->fetch();
+        $userStmt->close();
+    }
+
+    // Display the main and footer content
     ?>
     <!DOCTYPE html>
     <html lang="en">
     <head>
-        <!-- Add your head content here -->
-    </head>
-    <body>
-
-    <form method="post" action="">
-        Username: <input type="text" name="username"><br>
-        Password: <input type="password" name="passcode"><br>
-        <input type="submit" value="Login">
-    </form>
-
-    <!-- Add your main and footer content here -->
-
-    </body>
-    </html>
-    <?php
-}
-
-// Close the database connection
-$mysqli->close();
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vergammelkapsel</title>
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="img/favicon.ico" type="img/x-icon">
-    <style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vergammelkapsel</title>
+        <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="img/favicon.ico" type="img/x-icon">
+        <style>
         body {
             background-color: #222;
             color: #fff;
@@ -188,24 +177,24 @@ $mysqli->close();
             background-color: transparent;
         }
     </style>
-</head>
-<body>
+    </head>
+    <body>
 
-<header>
-    <div class="user-info">
-        <a href="site">
-            <img src="img/<?php echo isset($userImage) ? $userImage : 'default-image.png'; ?>" alt="User Icon">
-        </a>
-        <span><?php echo isset($_SESSION['user']) ? "Hiya! " . $_SESSION['user'] : "USERNAME: "; ?></span>
-    </div>
-    
-    <div class="coin-info">
-        <img src="img/coin.png" alt="Coin">
-        <span>COINS: <?php echo $coinCount; ?></span>
-    </div>
-</header>
+    <header>
+        <div class="user-info">
+            <a href="site">
+                <img src="img/<?php echo isset($userImage) ? $userImage : 'default-image.png'; ?>" alt="User Icon">
+            </a>
+            <span><?php echo isset($_SESSION['user']) ? "Hiya! " . $_SESSION['user'] : "USERNAME: "; ?></span>
+        </div>
+        
+        <div class="coin-info">
+            <img src="img/coin.png" alt="Coin">
+            <span>COINS: <?php echo isset($coinCount) ? $coinCount : 0; ?></span>
+        </div>
+    </header>
 
-<main>
+    <main>
     <section id="section1">
     <h2>SECTION1</h2>
         <p>TEXT</p>
@@ -237,9 +226,15 @@ $mysqli->close();
     </section>
 </main>
 
-<footer>
-    <p>&copy; WWAGO Development Inc.</p>
-</footer>
+    <footer>
+        <p>&copy; WWAGO Development Inc.</p>
+    </footer>
 
-</body>
-</html>
+    </body>
+    </html>
+    <?php
+}
+
+// Close the database connection
+$mysqli->close();
+?>
