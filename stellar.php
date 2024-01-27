@@ -10,6 +10,7 @@
         body {
             background-color: #222;
             color: #fff;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
         }
