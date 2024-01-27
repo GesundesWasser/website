@@ -27,9 +27,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_result($username, $hashedPassword, $userImage);
     
     if ($stmt->fetch()) {
+        echo "Stored Password: $hashedPassword<br>";
+        echo "Entered Password: $enteredPasscode<br>";
         if (password_verify($enteredPasscode, $hashedPassword)) {
             // Password is correct, store the user in the session
             $_SESSION['user'] = $username;
+            echo "Login Successful";
         } else {
             // Handle the case where an Invalid Password is Detected
             echo "Invalid Password";
@@ -44,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
 } else {
     // Handle the case where the form is not submitted
-    echo "NO FORM SUBMITTED";
+    header("Location: shoplogin");
     exit();
 }
 
