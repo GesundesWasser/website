@@ -20,19 +20,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $enteredUsername = $_POST["username"];
     $enteredPasscode = $_POST["passcode"];
 
-    // Query the database to get the hashed password associated with the entered username
-    $query = "SELECT passcode FROM users WHERE username = ?";
+    // Query the database to get the hashed password and image associated with the entered username
+    $query = "SELECT passcode, image FROM users WHERE username = ?";
     $stmt = $mysqli->prepare($query);
     $stmt->bind_param("s", $enteredUsername);
     $stmt->execute();
-    $stmt->bind_result($hashedPassword);
+    $stmt->bind_result($hashedPassword, $userImage);
     
     if ($stmt->fetch()) {
-        // Debug information
-        echo "Entered Username: $enteredUsername<br>";
-        echo "Entered Password: $enteredPasscode<br>";
-        echo "Stored Password from Database: $hashedPassword<br>";
-
         // Verify the entered password against the stored hash
         if (password_verify($enteredPasscode, $hashedPassword)) {
             // Password is correct, store the user in the session
@@ -50,15 +45,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
 } else {
     // Display the login form
-    // ...
-
-    // Example form:
     ?>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <!-- Add your head content here -->
+    </head>
+    <body>
+
     <form method="post" action="">
         Username: <input type="text" name="username"><br>
         Password: <input type="password" name="passcode"><br>
         <input type="submit" value="Login">
     </form>
+
+    <!-- Add your main and footer content here -->
+
+    </body>
+    </html>
     <?php
 }
 
