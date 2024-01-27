@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $imageFileName = $defaultImage; // Default value if no image is uploaded
 
         if ($_FILES['image']['error'] == UPLOAD_ERR_OK) {
-            $uploadDir = '/absolute/path/to/uploaded_files/'; // Change this to the actual upload directory
+            $uploadDir = '/var/www/upload'; // Change this to the actual upload directory
 
             // Check if the directory exists, create it if necessary
             if (!file_exists($uploadDir)) {
