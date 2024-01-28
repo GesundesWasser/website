@@ -30,6 +30,8 @@ if (isset($_SESSION['user'])) {
     $userStmt->bind_param("s", $loggedInUser);
     $userStmt->execute();
     $userStmt->bind_result($coinCount, $userImage);
+
+    // Fetch the result before displaying the main content
     $userStmt->fetch();
     $userStmt->close();
 }
@@ -160,9 +162,9 @@ if (isset($_SESSION['user'])) {
     <header>
         <div class="user-info">
             <a href="site">
-                <img src="img/<?php echo isset($userImage) ? $userImage : 'IMAGE'; ?>" alt="User Icon">
+                <img src="img/<?php echo isset($userImage) ? $userImage : 'default-image.png'; ?>" alt="User Icon">
             </a>
-            <span><?php echo isset($_SESSION['user']) ? "Hiya! " . $_SESSION['user'] : "USERNAME"; ?></span>
+            <span><?php echo isset($_SESSION['user']) ? "Hiya! " . $_SESSION['user'] : "USERNAME: "; ?></span>
         </div>
         
         <div class="coin-info">
