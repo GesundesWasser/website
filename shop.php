@@ -16,28 +16,64 @@ if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
 
-// Check if the user is logged in
-if (isset($_SESSION['user'])) {
-    // Fetch user information (coins and userImage) from the database
-    $loggedInUser = $_SESSION['user'];
-    $userQuery = "SELECT coins, image FROM users WHERE username = ?";
-    $userStmt = $mysqli->prepare($userQuery);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $enteredUsername = $_POST["username"];
+    $enteredPasscode = $_POST["passcode"];
 
-    if (!$userStmt) {
-        die("Error in user query preparation: " . $mysqli->error);
+    // Query the database to get the hashed password and image associated with the entered username
+    $query = "SELECT passcode, image, coins FROM users WHERE username = ?";
+    $stmt = $mysqli->prepare($query);
+
+    if (!$stmt) {
+        die("Error in query preparation: " . $mysqli->error);
     }
 
-    $userStmt->bind_param("s", $loggedInUser);
-    $userStmt->execute();
-    $userStmt->bind_result($coinCount, $userImage);
+    $stmt->bind_param("s", $enteredUsername);
+    $stmt->execute();
+    $stmt->bind_result($hashedPassword, $userImage, $coinCount);
 
-    // Fetch the result before displaying the main content
-    $userStmt->fetch();
-    $userStmt->close();
-}
+    if ($stmt->fetch()) {
+        // Verify the entered password against the stored hash
+        if (password_verify($enteredPasscode, $hashedPassword)) {
+            // Password is correct, store the user in the session
+            $_SESSION['user'] = $enteredUsername;
+            echo "Login Successful";
 
-// Display the main and footer content
-?>
+            // Free the result set
+            $stmt->free_result();
+        } else {
+            // Handle the case where an Invalid Password is Detected
+            echo "Invalid Password";
+        }
+    } else {
+        // Handle the case where an Invalid Username is Detected
+        echo "Invalid Username";
+    }
+
+    $stmt->close();
+} else {
+    // Check if the user is logged in
+    if (isset($_SESSION['user'])) {
+        // Fetch user information (coins and userImage) from the database
+        $loggedInUser = $_SESSION['user'];
+        $userQuery = "SELECT coins, image FROM users WHERE username = ?";
+        $userStmt = $mysqli->prepare($userQuery);
+
+        if (!$userStmt) {
+            die("Error in user query preparation: " . $mysqli->error);
+        }
+
+        $userStmt->bind_param("s", $loggedInUser);
+        $userStmt->execute();
+        $userStmt->bind_result($coinCount, $userImage);
+
+        // Fetch the result before displaying the main content
+        $userStmt->fetch();
+        $userStmt->close();
+    }
+
+    // Display the main and footer content
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
