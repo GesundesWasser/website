@@ -1,48 +1,3 @@
-<?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-session_start();
-
-// Replace with your actual MySQL database details
-$host = "localhost";
-$username = "web";
-$password = "bodenkapsel";
-$database = "users";
-
-$mysqli = new mysqli($host, $username, $password, $database);
-
-if ($mysqli->connect_error) {
-    die("Connection failed: " . $mysqli->connect_error);
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $enteredPasscode = $_POST["passcode"];
-
-    // Query the database to get the username and image associated with the entered passcode
-    $query = "SELECT username, image FROM users WHERE passcode = ?";
-    $stmt = $mysqli->prepare($query);
-    $stmt->bind_param("s", $enteredPasscode);
-    $stmt->execute();
-    $stmt->bind_result($username, $userImage);
-    
-    if ($stmt->fetch()) {
-        // Store the user in the session
-        $_SESSION['user'] = $username;
-    } else {
-        // Handle the case where an Invalid Password is Detected
-        header("Location: shoplogin");
-        exit();
-    }
-
-    $stmt->close();
-} else {
-    // Handle the case where the form is not submitted
-    header("Location: shoplogin");
-    exit();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,6 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             background-color: #222;
             color: #fff;
             margin: 0;
+            font-family: 'Arial', sans-serif;
             padding: 0;
         }
 
@@ -143,52 +99,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             display: block; /* Set the image to block-level to make it appear above the text */
             margin-bottom: 10px; /* Add some space between the image and the text */
         }
+
     </style>
 </head>
 <body>
 
 <header>
-    <a href="site">
-    <img src="img/<?php echo isset($userImage) ? $userImage : 'default-image.png'; ?>" alt="User Icon">
-</a>
-    <h1><?php echo isset($_SESSION['user']) ? "Hiya! " . $_SESSION['user'] : "USERNAME"; ?></h1>
+    <div class="user-info">
+        <a href="site">
+            <img src="img/<?php echo isset($userImage) ? $userImage : 'default-image.png'; ?>" alt="User Icon">
+        </a>
+        <span><?php echo isset($_SESSION['user']) ? "Hiya! " . $_SESSION['user'] : "USERNAME: "; ?></span>
+    </div>
+    
+    <div class="coin-info">
+        <img src="img/coin.png" alt="Coin">
+        <span>COINS: <?php echo $coinCount; ?></span>
+    </div>
 </header>
 
 <main>
-    <section id="section1">
-    <h2>SECTION1</h2>
-        <p>TEXT</p>
-        <button onclick="window.location.href=''">Download</button>
+        <section id="section1">
+            <h2>Winwows Installer</h2>
+            <p>TEXT</p>
+            <button onclick="window.location.href='dl/downloader.py'">Download</button>
+        </section>
+
+        <section id="section2">
+            <h2>Gratspiel Downloader</h2>
+            <p>TEXT</p>
+            <button onclick="window.location.href='dl/winwowsinstall-1.0desktop-18012024.vbs'">Download</button>
+        </section>
+
+        <section id="section3">
+        <h2>Remove Coins</h2>
+        <p>Click the button to remove 10 coins</p>
+        <form method="post" action="">
+            <!-- Add a hidden input for the passcode -->
+            <input type="hidden" name="passcode" value="<?php echo htmlspecialchars($enteredPasscode ?? '', ENT_QUOTES); ?>">
+            <button type="submit" name="removeCoins">Remove Coins</button>
+        </form>
     </section>
 
-    <section id="section2">
-    <h2>SECTION2</h2>
-        <p>TEXT</p>
-        <button onclick="window.location.href=''">Download</button>
-    </section>
-
-    <section id="section3">
-        <h2>SECTION3</h2>
-        <p>TEXT</p>
-        <button onclick="window.location.href=''">Download</button>
-    </section>
-
-    <section id="section4">
-        <h2>SECTION4</h2>
-        <p>TEXT</p>
-        <button onclick="window.location.href=''">Download</button>
-    </section>
-
-    <section id="section5">
-        <h2>SECTION5</h2>
-        <p>TEXT</p>
-        <button onclick="window.location.href=''">Download</button>
-    </section>
+        <footer>
+        <p>&copy; WWAGO Inc.</p>
+        </footer>
 </main>
-
 <footer>
-    <p>&copy; WWAGO Development Inc.</p>
+    <p>&copy; WWAGO Inc.</p>
 </footer>
-
-</body>
-</html>

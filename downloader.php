@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stellar</title>
+    <title>Vergammelkapsel</title>
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="img/favicon.ico" type="img/x-icon">    
+    <link rel="shortcut icon" href="img/favicon.ico" type="img/x-icon">
     <style>
         body {
             background-color: #222;
             color: #fff;
-            font-family: 'Arial', sans-serif;
             margin: 0;
+            font-family: 'Arial', sans-serif;
             padding: 0;
         }
 
@@ -99,22 +99,7 @@
             display: block; /* Set the image to block-level to make it appear above the text */
             margin-bottom: 10px; /* Add some space between the image and the text */
         }
-        body::-webkit-scrollbar {
-            width: 8px;
-        }
 
-        body::-webkit-scrollbar-thumb {
-            background-color: #fff;
-            border-radius: 6px;
-        }
-
-        body::-webkit-scrollbar-track {
-            background-color: transparent;
-        }
-
-        body::-webkit-scrollbar-track-piece {
-            background-color: transparent;
-        }
     </style>
 </head>
 <body>
@@ -140,64 +125,120 @@ if ($mysqli->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $enteredPasscode = $_POST["passcode"];
 
-    // Query the database to get the username and image associated with the entered passcode
-    $query = "SELECT username, image FROM users WHERE passcode = ?";
+    if (empty($enteredPasscode)) {
+        // Handle the case where passcode is empty
+        header("Location: invalidpass");
+        exit();
+    }
+
+    // Query the database to get the username, image, and downloadpass associated with the entered passcode
+    $query = "SELECT username, image, downloadpass FROM users WHERE passcode = ?";
     $stmt = $mysqli->prepare($query);
     $stmt->bind_param("s", $enteredPasscode);
     $stmt->execute();
-    $stmt->bind_result($username, $userImage);
-    
+    $stmt->bind_result($username, $userImage, $downloadPass);
+
     if ($stmt->fetch()) {
-        // Store the user in the session
-        $_SESSION['user'] = $username;
+        // Check if downloadpass is set to 1
+        if ($downloadPass == 1) {
+            // Store the user in the session
+            $_SESSION['user'] = $username;
+        } else {
+            // Handle the case where download Pass is not Valid
+            header("Location: download");
+            exit();
+        }
     } else {
         // Handle the case where an Invalid Password is Detected
-        header("Location: stellarlogin");
+        header("Location: download");
         exit();
     }
 
     $stmt->close();
 } else {
     // Handle the case where the form is not submitted
-    header("Location: stellarlogin");
+    header("Location: download");
+    exit();
+}
+
+// Check if the user is logged in before fetching the coin count
+if (isset($_SESSION['user'])) {
+    // Query the database to get the coin count associated with the logged-in user
+    $coinQuery = "SELECT coins FROM users WHERE username = ?";
+    $coinStmt = $mysqli->prepare($coinQuery);
+    $coinStmt->bind_param("s", $_SESSION['user']);
+    $coinStmt->execute();
+    $coinStmt->bind_result($userCoins);
+
+    // Fetch the coin count
+    if ($coinStmt->fetch()) {
+        $coinCount = $userCoins;
+    } else {
+        $coinCount = 0; // Default value if no coins are found
+    }
+
+    $coinStmt->close();
+} else {
+    $coinCount = 0; // Default value if the user is not logged in
+}
+
+// Process the removal of coins if the "Remove Coins" button is clicked
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["removeCoins"]) && isset($_SESSION['user'])) {
+    // Check if the user is logged in before removing coins
+    $removeCoinsQuery = "UPDATE users SET coins = GREATEST(coins - 10, 0) WHERE username = ?";
+    $removeCoinsStmt = $mysqli->prepare($removeCoinsQuery);
+    $removeCoinsStmt->bind_param("s", $_SESSION['user']);
+    $removeCoinsStmt->execute();
+    $removeCoinsStmt->close();
+    
+    // Redirect to the current page to avoid re-submitting the form
+    header("Location: site");
     exit();
 }
 ?>
 
+
 <header>
-    <!-- Wrapped the img tag with an a tag to make it a link to Google -->
-    <a href="site">
-    <img src="img/<?php echo isset($userImage) ? $userImage : 'default-image.png'; ?>" alt="User Icon">
-</a>
-    <h1><?php echo isset($_SESSION['user']) ? "WWAGO, " . $_SESSION['user'] : "USERNAME"; ?></h1>
+    <div class="user-info">
+        <a href="site">
+            <img src="img/<?php echo isset($userImage) ? $userImage : 'default-image.png'; ?>" alt="User Icon">
+        </a>
+        <span><?php echo isset($_SESSION['user']) ? "Hiya! " . $_SESSION['user'] : "USERNAME: "; ?></span>
+    </div>
+    
+    <div class="coin-info">
+        <img src="img/coin.png" alt="Coin">
+        <span>COINS: <?php echo $coinCount; ?></span>
+    </div>
 </header>
 
 <main>
-<section id="section1">
-            <h2>Oh Nein, Der Tower Brennt!</h2>
-            <p>WENN DER DIE SIRENE HÖRT, FÜHLT ER SICH SEHR GESTÖRT!</p>
-            <button onclick="window.location.href='video/tower-fire.html'">Anzeigen</button>
+        <section id="section1">
+            <h2>Winwows Installer</h2>
+            <p>TEXT</p>
+            <button onclick="window.location.href='dl/downloader.py'">Download</button>
         </section>
 
         <section id="section2">
-            <h2>Mystery Video</h2>
-            <p>ITS A MYSTERY!</p>
-            <button onclick="window.location.href='video/rickroll.html'">Anzeigen</button>
+            <h2>Gratspiel Downloader</h2>
+            <p>TEXT</p>
+            <button onclick="window.location.href='dl/winwowsinstall-1.0desktop-18012024.vbs'">Download</button>
         </section>
 
         <section id="section3">
-            <h2>PLACEHOLDER</h2>
-            <p>TEXT</p>
-            <button disabled>Coming Soon...</button>
-        </section>
+        <h2>Remove Coins</h2>
+        <p>Click the button to remove 10 coins</p>
+        <form method="post" action="">
+            <!-- Add a hidden input for the passcode -->
+            <input type="hidden" name="passcode" value="<?php echo htmlspecialchars($enteredPasscode ?? '', ENT_QUOTES); ?>">
+            <button type="submit" name="removeCoins">Remove Coins</button>
+        </form>
+    </section>
 
-        <section id="section4">
-            <h2>PLACEHOLDER</h2>
-            <p>TEXT</p>
-            <button disabled>Coming Soon...</button>
-        </section>
+        <footer>
+        <p>&copy; WWAGO Inc.</p>
+        </footer>
 </main>
-
 <footer>
     <p>&copy; WWAGO Inc.</p>
 </footer>

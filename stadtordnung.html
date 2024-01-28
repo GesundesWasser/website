@@ -10,6 +10,7 @@
         body {
             background-color: #222; /* Darker background color */
             color: #fff; /* White text color for better readability */
+            font-family: 'Arial', sans-serif;
             margin: 0; /* Remove default margin */
             padding: 0; /* Remove default padding */
         }
@@ -42,6 +43,22 @@
             padding: 10px;
             border: none;
             cursor: pointer;
+        }
+        body::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background-color: #fff;
+            border-radius: 6px;
+        }
+
+        body::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        body::-webkit-scrollbar-track-piece {
+            background-color: transparent;
         }
     </style>
 </head>
