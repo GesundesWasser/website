@@ -46,13 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </html>
         <?php
     } else {
-        // Display login form here
-        ?>
-        <!DOCTYPE html>
-        <html lang="en">
-        <!-- ... (your login form HTML code) ... -->
-        </html>
-        <?php
+        header("Location: site");
     }
 }
 
