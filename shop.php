@@ -80,115 +80,121 @@ if (isset($_SESSION['user'])) {
         <link rel="icon" href="img/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="img/favicon.ico" type="img/x-icon">
         <style>
-body {
-    background-color: #222; /* Darker background color */
-    font-family: 'Arial', sans-serif;
-    color: #fff; /* White text color for better readability */
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
-}
+            body {
+                background-color: #222;
+                color: #fff;
+                margin: 0;
+                font-family: 'Arial', sans-serif;
+                padding: 0;
+            }
 
-header, nav, main, footer {
-    padding: 20px;
-}
+            header, main, footer {
+                padding: 20px;
+                box-sizing: border-box;
+                max-width: 800px; /* Set your desired max-width */
+                margin: 0 auto; /* Center the content */
+            }
 
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
+            header img {
+                max-width: 80px;
+                height: auto;
+                margin-right: 15px;
+                vertical-align: middle; /* Align the image vertically */
+            }
 
-nav li {
-    display: inline;
-    margin-right: 15px;
-}
+            header h1 {
+                margin: 0;
+                display: inline-block;
+                vertical-align: middle; /* Align the text vertically */
+            }
 
-a {
-    color: #fff; /* White color for links */
-    text-decoration: none;
-}
+            nav ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
 
-button {
-    background-color: #555; /* Darker button color */
-    color: #fff; /* White text color for the button */
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px; /* Rounded corners */
-}
+            nav li {
+                display: inline;
+                margin-right: 15px;
+            }
 
-/* Darker and smaller text input fields */
-input[type="text"], input[type="password"], textarea {
-    background-color: #333; /* Darker textbox background color */
-    color: #fff; /* White text color for the textbox */
-    padding: 8px;
-    border: none;
-    border-radius: 5px; /* Rounded corners for the textbox */
-    width: 150px; /* Set the width of the textbox */
-}
+            a {
+                color: #fff;
+                text-decoration: none;
+            }
 
-body::-webkit-scrollbar {
-            width: 8px;
-        }
+            button {
+                background-color: #555;
+                color: #fff;
+                padding: 10px;
+                border: none;
+                cursor: pointer;
+                border-radius: 5px;
+            }
 
-        body::-webkit-scrollbar-thumb {
-            background-color: #fff;
-            border-radius: 6px;
-        }
+            input[type="text"], input[type="password"], textarea {
+                background-color: #333;
+                color: #fff;
+                padding: 8px;
+                border: none;
+                border-radius: 5px;
+                width: 150px;
+            }
 
-        body::-webkit-scrollbar-track {
-            background-color: transparent;
-        }
-
-        body::-webkit-scrollbar-track-piece {
-            background-color: transparent;
-        }
-    </style>
+            main img {
+                max-width: 100%;
+                height: auto;
+                margin-right: 15px;
+                margin-bottom: 15px;
+                vertical-align: middle;
+            }
+        </style>
     </head>
     <body>
-<!-- Your header content here -->
-<header>
-<div class="user-info">
-            <a href="site">
-                <img src="img/<?php echo isset($userImage) ? $userImage : 'default-image.png'; ?>" alt="User Icon">
-            </a>
-            <span><?php echo isset($_SESSION['user']) ? "Hiya! " . $_SESSION['user'] : "USERNAME: "; ?></span>
-        </div>
-    
-    <div class="coin-info">
-        <img src="/img/coin.png" alt="Coin">
-        <span>COINS: <?php echo isset($coinCount) ? $coinCount : 0; ?></span>
-    </div>
-</header>
-
+        <!-- Your header content here -->
+        <header>
+            <div class="user-info">
+                <a href="site">
+                    <img src="img/<?php echo isset($userImage) ? $userImage : 'default-image.png'; ?>" alt="User Icon">
+                </a>
+                <span><?php echo isset($_SESSION['user']) ? "Hiya! " . $_SESSION['user'] : "USERNAME: "; ?></span>
+            </div>
+            
+            <div class="coin-info">
+                <img src="img/coin.png" alt="Coin">
+                <span>COINS: <?php echo isset($coinCount) ? $coinCount : 0; ?></span>
+            </div>
+        </header>
 
         <main>
 
-        <section id="section1">
-            <h2>Download Pass</h2>
-            <p>Der Download Pass Pro Plus Ultra Premium Max</p>
-        </section>
+            <section id="section1">
+                <h2>Download Pass</h2>
+                <p>Der Download Pass Pro Plus Ultra Premium Max</p>
+            </section>
 
-        <section id="section1">
-            <img src="img/wwago.png" alt="Bild von WWAGO">
-            <h2>WWAGO</h2>
-            <p>Der OG WWAGO für 3 WWAGO Coins!</p>
-            <button onclick="alert('Kauf Felgeschlagen!')">Kaufen!</button>
-        </section>
+            <section id="section2">
+                <img src="img/wwago.png" alt="Bild von WWAGO">
+                <h2>WWAGO</h2>
+                <p>Der OG WWAGO für 3 WWAGO Coins!</p>
+                <button onclick="alert('Kauf Felgeschlagen!')">Kaufen!</button>
+            </section>
 
-        <section id="section2">
-            <img src="img/wwago-kaputt.png" alt="Bild von Kaputten WWAGO :(">
-            <h2>Kaputter WWAGO :(</h2>
-            <p>Der Aller Beste WWAGO in der Kaputten Form! (Wieso willst du einen kaputten?)</p>
-            <button onclick="alert('Kauf Felgeschlagen!')">Kaufen!</button>
+            <section id="section3">
+                <img src="img/wwago-kaputt.png" alt="Bild von Kaputten WWAGO :(">
+                <h2>Kaputter WWAGO :(</h2>
+                <p>Der Aller Beste WWAGO in der Kaputten Form! (Wieso willst du einen kaputten?)</p>
+                <button onclick="alert('Kauf Felgeschlagen!')">Kaufen!</button>
+            </section>
 
-        <section id="section3">
-            <img src="img/wago_klemme.png" alt="Bild von WAGO Klemme">
-            <h2>WAGO Klemme</h2>
-            <p>DER NEUE WAGO KLEMMEN WWAGO (der eingentlich gar keiner ist!)</p>
-            <button onclick="alert('Kauf Felgeschlagen!')">Kaufen!</button>
-        </section>
+            <section id="section4">
+                <img src="img/wago_klemme.png" alt="Bild von WAGO Klemme">
+                <h2>WAGO Klemme</h2>
+                <p>DER NEUE WAGO KLEMMEN WWAGO (der eigentlich gar keiner ist!)</p>
+                <button onclick="alert('Kauf Felgeschlagen!')">Kaufen!</button>
+            </section>
 
         </main>
 
