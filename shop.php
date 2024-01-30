@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->free_result();
 
             // Redirect after login
-            header("Location: your_dashboard_page.php");
+            echo "SUCESSFULL LOGIN!";
             exit();
         } else {
             // Handle the case where an Invalid Password is Detected
