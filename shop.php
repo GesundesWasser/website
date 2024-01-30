@@ -38,13 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Password is correct, store the user in the session
             $_SESSION['user'] = $enteredUsername;
             echo "Login Successful";
-
-            // Free the result set
-            $stmt->free_result();
-
-            // Redirect after login
-            echo "LOGGED IN!";
-            exit();
         } else {
             // Handle the case where an Invalid Password is Detected
             echo "Invalid Password";
@@ -55,81 +48,77 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $stmt->close();
-} else {
-    // Check if the user is logged in
-    if (isset($_SESSION['user'])) {
-        // Fetch user information (coins and userImage) from the database
-        $loggedInUser = $_SESSION['user'];
-        $userQuery = "SELECT coins, image FROM users WHERE username = ?";
-        $userStmt = $mysqli->prepare($userQuery);
-
-        if (!$userStmt) {
-            die("Error in user query preparation: " . $mysqli->error);
-        }
-
-        $userStmt->bind_param("s", $loggedInUser);
-        $userStmt->execute();
-        $userStmt->bind_result($coinCount, $userImage);
-
-        // Fetch the result before displaying the main content
-        $userStmt->fetch();
-        $userStmt->close();
-
-        // Close the database connection
-        $mysqli->close();
-        ?>
-
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Vergammelkapsel</title>
-            <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-            <link rel="shortcut icon" href="img/favicon.ico" type="img/x-icon">
-            <style>
-                /* Your styles here */
-            </style>
-        </head>
-        <body>
-            <!-- Your header content here -->
-            <header>
-                <div class="user-info">
-                    <a href="site">
-                        <img src="img/<?php echo isset($userImage) ? $userImage : 'default-image.png'; ?>" alt="User Icon">
-                    </a>
-                    <span><?php echo isset($_SESSION['user']) ? "Hiya! " . $_SESSION['user'] : "USERNAME: "; ?></span>
-                </div>
-                
-                <div class="coin-info">
-                    <img src="img/coin.png" alt="Coin">
-                    <span>COINS: <?php echo isset($coinCount) ? $coinCount : 0; ?></span>
-                </div>
-            </header>
-
-            <main>
-                <section id="section1">
-                    <h2>SECTION1</h2>
-                    <p>TEXT</p>
-                    <button onclick="window.location.href=''">Download</button>
-                </section>
-
-                <!-- ... (other sections) ... -->
-
-            </main>
-
-            <!-- Your footer content here -->
-            <footer>
-                <p>&copy; WWAGO Development Inc.</p>
-            </footer>
-        </body>
-        </html>
-
-        <?php
-    } else {
-        // Redirect to login page
-        header("Location: login.php");
-        exit();
-    }
 }
+
+// Check if the user is logged in
+if (isset($_SESSION['user'])) {
+    // Fetch user information (coins and userImage) from the database
+    $loggedInUser = $_SESSION['user'];
+    $userQuery = "SELECT coins, image FROM users WHERE username = ?";
+    $userStmt = $mysqli->prepare($userQuery);
+
+    if (!$userStmt) {
+        die("Error in user query preparation: " . $mysqli->error);
+    }
+
+    $userStmt->bind_param("s", $loggedInUser);
+    $userStmt->execute();
+    $userStmt->bind_result($coinCount, $userImage);
+
+    // Fetch the result before displaying the main content
+    $userStmt->fetch();
+    $userStmt->close();
+
+    // Display the main HTML content
+    ?>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vergammelkapsel</title>
+        <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="img/favicon.ico" type="img/x-icon">
+        <style>
+            /* Your styles here */
+        </style>
+    </head>
+    <body>
+        <!-- Your header content here -->
+        <header>
+            <div class="user-info">
+                <a href="site">
+                    <img src="img/<?php echo isset($userImage) ? $userImage : 'default-image.png'; ?>" alt="User Icon">
+                </a>
+                <span><?php echo isset($_SESSION['user']) ? "Hiya! " . $_SESSION['user'] : "USERNAME: "; ?></span>
+            </div>
+            
+            <div class="coin-info">
+                <img src="img/coin.png" alt="Coin">
+                <span>COINS: <?php echo isset($coinCount) ? $coinCount : 0; ?></span>
+            </div>
+        </header>
+
+        <main>
+            <section id="section1">
+                <h2>SECTION1</h2>
+                <p>TEXT</p>
+                <button onclick="window.location.href=''">Download</button>
+            </section>
+
+            <!-- ... (other sections) ... -->
+
+        </main>
+
+        <!-- Your footer content here -->
+        <footer>
+            <p>&copy; WWAGO Development Inc.</p>
+        </footer>
+    </body>
+    </html>
+    <?php
+}
+
+// Close the database connection
+$mysqli->close();
 ?>
