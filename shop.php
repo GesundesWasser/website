@@ -147,18 +147,19 @@ body::-webkit-scrollbar {
     </style>
     </head>
     <body>
-        <header>
-            <div class="user-info">
-                <a href="site">
-                    <img src="img/<?php echo isset($userImage) ? $userImage : 'default-image.png'; ?>" alt="User Icon">
-                </a>
-                <span><?php echo isset($_SESSION['user']) ? "Hiya! " . $_SESSION['user'] : "USERNAME: "; ?></span>
-            </div>       
-            <div class="coin-info">
-                <img src="img/coin.png" alt="Coin">
-                <span>COINS: <?php echo isset($coinCount) ? $coinCount : 0; ?></span>
-            </div>
-        </header>
+<header>
+    <div class="user-info">
+        <a href="site">
+            <img src="<?php echo '/' . (isset($userImage) ? $userImage : 'default-image.png'); ?>" alt="User Icon">
+        </a>
+        <span><?php echo isset($_SESSION['user']) ? "Hiya! " . $_SESSION['user'] : "USERNAME: "; ?></span>
+    </div>
+    
+    <div class="coin-info">
+        <img src="/img/coin.png" alt="Coin">
+        <span>COINS: <?php echo isset($coinCount) ? $coinCount : 0; ?></span>
+    </div>
+</header>
 
         <main>
 
