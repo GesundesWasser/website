@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->free_result();
 
             // Redirect after login
-            echo "SUCESSFULL LOGIN!";
+            header("Location: your_dashboard_page.php");
             exit();
         } else {
             // Handle the case where an Invalid Password is Detected
@@ -75,8 +75,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $userStmt->fetch();
         $userStmt->close();
 
-        // Display the main and footer content
+        // Close the database connection
+        $mysqli->close();
         ?>
+
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -122,6 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </footer>
         </body>
         </html>
+
         <?php
     } else {
         // Redirect to login page
@@ -129,7 +132,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 }
-
-// Close the database connection
-$mysqli->close();
 ?>
