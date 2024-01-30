@@ -147,10 +147,10 @@ body::-webkit-scrollbar {
     </style>
     </head>
     <body>
-<header>
+    <header>
     <div class="user-info">
         <a href="site">
-            <img src="<?php echo '/' . (isset($userImage) ? $userImage : 'default-image.png'); ?>" alt="User Icon">
+            <img src="<?php echo isset($userImage) ? '/' . $userImage : '/default-image.png'; ?>" alt="User Icon">
         </a>
         <span><?php echo isset($_SESSION['user']) ? "Hiya! " . $_SESSION['user'] : "USERNAME: "; ?></span>
     </div>
