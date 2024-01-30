@@ -147,13 +147,21 @@ body::-webkit-scrollbar {
     </style>
     </head>
     <body>
+<!-- Your header content here -->
 <header>
-    <!-- Wrapped the img tag with an a tag to make it a link to Google -->
-    <a href="site">
-    <img src="img/<?php echo isset($userImage) ? $userImage : 'default-image.png'; ?>" alt="User Icon">
-</a>
-    <h1><?php echo isset($_SESSION['user']) ? "WWAGO, " . $_SESSION['user'] : "USERNAME"; ?></h1>
+    <div class="user-info">
+        <a href="site">
+            <img src="<?php echo isset($userImage) ? '/var/www/upload/' . $userImage : '/var/www/upload/default-image.png'; ?>" alt="User Icon">
+        </a>
+        <span><?php echo isset($_SESSION['user']) ? "Hiya! " . $_SESSION['user'] : "USERNAME: "; ?></span>
+    </div>
+    
+    <div class="coin-info">
+        <img src="/img/coin.png" alt="Coin">
+        <span>COINS: <?php echo isset($coinCount) ? $coinCount : 0; ?></span>
+    </div>
 </header>
+
 
         <main>
 
