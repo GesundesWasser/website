@@ -88,13 +88,6 @@ body {
     padding: 0; /* Remove default padding */
 }
 
-header img {
-            width: 125px;
-            height: 38px;
-            margin-right: 15px;
-            vertical-align: middle; /* Align the image vertically */
-}
-
 header, nav, main, footer {
     padding: 20px;
 }
@@ -134,6 +127,7 @@ input[type="text"], input[type="password"], textarea {
     border-radius: 5px; /* Rounded corners for the textbox */
     width: 150px; /* Set the width of the textbox */
 }
+
 body::-webkit-scrollbar {
             width: 8px;
         }
@@ -168,10 +162,9 @@ body::-webkit-scrollbar {
 
         <main>
 
-        <section id="section0">
-            <img src="img/award-1.png" alt="Bild von Award">
-            <h2>WWAGO</h2>
-            <p>We are the Best Seating on the WORLD!!! we even have a Award!</p>
+        <section id="section1">
+            <h2>Download Pass</h2>
+            <p>Der Download Pass Pro Plus Ultra Premium Max</p>
         </section>
 
         <section id="section1">
