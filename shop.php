@@ -80,19 +80,86 @@ if (isset($_SESSION['user'])) {
         <link rel="icon" href="img/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="img/favicon.ico" type="img/x-icon">
         <style>
-            /* Your styles here */
-        </style>
+body {
+    background-color: #222; /* Darker background color */
+    font-family: 'Arial', sans-serif;
+    color: #fff; /* White text color for better readability */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+header img {
+            width: 125px;
+            height: 38px;
+            margin-right: 15px;
+            vertical-align: middle; /* Align the image vertically */
+}
+
+header, nav, main, footer {
+    padding: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+nav li {
+    display: inline;
+    margin-right: 15px;
+}
+
+a {
+    color: #fff; /* White color for links */
+    text-decoration: none;
+}
+
+button {
+    background-color: #555; /* Darker button color */
+    color: #fff; /* White text color for the button */
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Darker and smaller text input fields */
+input[type="text"], input[type="password"], textarea {
+    background-color: #333; /* Darker textbox background color */
+    color: #fff; /* White text color for the textbox */
+    padding: 8px;
+    border: none;
+    border-radius: 5px; /* Rounded corners for the textbox */
+    width: 150px; /* Set the width of the textbox */
+}
+body::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background-color: #fff;
+            border-radius: 6px;
+        }
+
+        body::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        body::-webkit-scrollbar-track-piece {
+            background-color: transparent;
+        }
+    </style>
     </head>
     <body>
-        <!-- Your header content here -->
         <header>
             <div class="user-info">
                 <a href="site">
                     <img src="img/<?php echo isset($userImage) ? $userImage : 'default-image.png'; ?>" alt="User Icon">
                 </a>
                 <span><?php echo isset($_SESSION['user']) ? "Hiya! " . $_SESSION['user'] : "USERNAME: "; ?></span>
-            </div>
-            
+            </div>       
             <div class="coin-info">
                 <img src="img/coin.png" alt="Coin">
                 <span>COINS: <?php echo isset($coinCount) ? $coinCount : 0; ?></span>
@@ -100,19 +167,37 @@ if (isset($_SESSION['user'])) {
         </header>
 
         <main>
-            <section id="section1">
-                <h2>SECTION1</h2>
-                <p>TEXT</p>
-                <button onclick="window.location.href=''">Download</button>
-            </section>
 
-            <!-- ... (other sections) ... -->
+        <section id="section0">
+            <img src="img/award-1.png" alt="Bild von Award">
+            <h2>WWAGO</h2>
+            <p>We are the Best Seating on the WORLD!!! we even have a Award!</p>
+        </section>
+
+        <section id="section1">
+            <img src="img/wwago.png" alt="Bild von WWAGO">
+            <h2>WWAGO</h2>
+            <p>Der OG WWAGO für 3 WWAGO Coins!</p>
+            <button onclick="alert('Kauf Felgeschlagen!')">Kaufen!</button>
+        </section>
+
+        <section id="section2">
+            <img src="img/wwago-kaputt.png" alt="Bild von Kaputten WWAGO :(">
+            <h2>Kaputter WWAGO :(</h2>
+            <p>Der Aller Beste WWAGO in der Kaputten Form! (Wieso willst du einen kaputten?)</p>
+            <button onclick="alert('Kauf Felgeschlagen!')">Kaufen!</button>
+
+        <section id="section3">
+            <img src="img/wago_klemme.png" alt="Bild von WAGO Klemme">
+            <h2>WAGO Klemme</h2>
+            <p>DER NEUE WAGO KLEMMEN WWAGO (der eingentlich gar keiner ist!)</p>
+            <button onclick="alert('Kauf Felgeschlagen!')">Kaufen!</button>
+        </section>
 
         </main>
 
-        <!-- Your footer content here -->
         <footer>
-            <p>&copy; WWAGO Development Inc.</p>
+            <p>&copy; WWAGO-Sites Inc.</p>
         </footer>
     </body>
     </html>
