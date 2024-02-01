@@ -4,7 +4,6 @@
 127.0.0.1	 0.start.bz
 127.0.0.1	 000dom.revenuedirect.com
 127.0.0.1	 005.free-counter.co.uk
-google.com duckduckgo.com
 127.0.0.1	 006.free-counter.co.uk
 127.0.0.1	 007.free-counter.co.uk
 127.0.0.1	 008.free-counter.co.uk
