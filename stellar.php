@@ -119,51 +119,6 @@
 </head>
 <body>
 
-<?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-session_start();
-
-// Replace with your actual MySQL database details
-$host = "localhost";
-$username = "web";
-$password = "bodenkapsel";
-$database = "users";
-
-$mysqli = new mysqli($host, $username, $password, $database);
-
-if ($mysqli->connect_error) {
-    die("Connection failed: " . $mysqli->connect_error);
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $enteredPasscode = $_POST["passcode"];
-
-    // Query the database to get the username and image associated with the entered passcode
-    $query = "SELECT username, image FROM users WHERE passcode = ?";
-    $stmt = $mysqli->prepare($query);
-    $stmt->bind_param("s", $enteredPasscode);
-    $stmt->execute();
-    $stmt->bind_result($username, $userImage);
-    
-    if ($stmt->fetch()) {
-        // Store the user in the session
-        $_SESSION['user'] = $username;
-    } else {
-        // Handle the case where an Invalid Password is Detected
-        header("Location: stellarlogin");
-        exit();
-    }
-
-    $stmt->close();
-} else {
-    // Handle the case where the form is not submitted
-    header("Location: stellarlogin");
-    exit();
-}
-?>
-
 <header>
     <!-- Wrapped the img tag with an a tag to make it a link to Google -->
     <a href="site">
