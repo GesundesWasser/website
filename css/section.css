@@ -1,12 +1,26 @@
-section img {
-    max-width: 100%; /* Ensure the image doesn't exceed its original width */
+/* section img {
+    max-width: 100%;
     margin-right: 15px;
-    margin-bottom: 15px; /* Add bottom margin to separate image and text */
+    margin-bottom: 15px;
+}
+*/
+
+
+
+
+main {
+    text-align: center;
+    padding-top: 10px;
 }
 section img {
+    max-width: 100%;
     width: 75px;
     height: 75px;
+    display: block;
+    margin: 0 auto;
 }
+
 section {
     margin-bottom: 20px;
+
 }
