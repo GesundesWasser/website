@@ -3,8 +3,6 @@
 // An IIFE to avoid polluting global scope
 (function() {
     $(document).ready(function() {
-        // Update the copyright year
-        $('#copyright-year').text("2024 -> " + new Date().getFullYear());
 
         // Set the Codename, version, revision, testbuild and Copyright Year.
         const CODENAME = "Kapselordnung";
