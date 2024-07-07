@@ -1,6 +1,6 @@
 "use strict";
 
-$(window).on('load', function() {
+$(document).ready(function() {
     const $darkButton = $('#dark');
     const $lightButton = $('#light');
     const $solarButton = $('#solar');
