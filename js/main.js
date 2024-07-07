@@ -1,5 +1,6 @@
+"use strict";
+
 $(document).ready(function() {
-    // Define the sections for the main content
     const SectionsMain = [
         {
             imgSrc: 'https://download.scamcraft.net/img/jakobsoftlogo-ohne-schrift.png',
@@ -18,7 +19,7 @@ $(document).ready(function() {
             imgSrc: 'https://download.scamcraft.net/img/timemachine.png',
             imgAlt: 'Time Machine',
             title: 'Time Machine',
-            description: 'Die Zeitmaschine bringt dich zu jedem Codename Zurück!',
+            description: 'Die Zeitmaschine bringt dich zu jedem Codename ZurÃ¼ck!',
             buttonText: 'Du Geben Zeitmaschine!',
             buttonAction: () => {
                 currentSections = SectionsTimemachine;
@@ -44,7 +45,7 @@ $(document).ready(function() {
             imgSrc: 'https://download.scamcraft.net/img/gratspiel-logo.png',
             imgAlt: 'Gratspiel.Virus',
             title: '',
-            description: 'Die Besten Vir- Ähhh Spiele!',
+            description: 'Die Besten Vir- Ã„hhh Spiele!',
             buttonText: 'Zur Gratspiel Seite!',
             buttonAction: () => {
                 currentSections = SectionsGratspiel;
@@ -57,7 +58,7 @@ $(document).ready(function() {
             imgSrc: 'https://download.scamcraft.net/img/minecraft.png',
             imgAlt: 'Minecraft',
             title: 'Minecraft',
-            description: 'Die Besten Basen, Deathchamber, Müllchamber und die Ultimative Blockade!',
+            description: 'Die Besten Basen, Deathchamber, MÃ¼llchamber und die Ultimative Blockade!',
             buttonText: 'Anzeigen',
             buttonLink: 'minecraft',
             buttonAction: () => {
@@ -71,7 +72,7 @@ $(document).ready(function() {
             imgSrc: 'https://download.scamcraft.net/img/book.png',
             imgAlt: 'Stadtordnung',
             title: 'Stadtordnung',
-            description: 'Die Regeln von MCDONELTS CITY (Die Schmeißt man ins Klo und sind NICHT zum Lesen da!)',
+            description: 'Die Regeln von MCDONELTS CITY (Die SchmeiÃŸt man ins Klo und sind NICHT zum Lesen da!)',
             buttonText: 'Leider Gratgesperrt! (Gratsperre.virus)',
             disabled: true,
             imgStyles: { width: '65px', height: '65px' },
@@ -81,7 +82,7 @@ $(document).ready(function() {
             imgSrc: 'https://download.scamcraft.net/img/codename-kapsel-security.png',
             imgAlt: 'Codename Kapselsecurity',
             title: 'Codename Kapselsecurity',
-            description: 'Der Login Für Codename Kapselsecurity!',
+            description: 'Der Login FÃ¼r Codename Kapselsecurity!',
             buttonText: 'Zur Kapselsecurity Alpha!',
             buttonLink: 'accounts/',
             imgStyles: { width: '65px', height: '65px' },
@@ -101,7 +102,7 @@ $(document).ready(function() {
             imgSrc: 'https://download.scamcraft.net/img/stellar.png',
             imgAlt: 'Codename Stellarvideo',
             title: 'Codename Stellarvideo',
-            description: 'Der Login Für Codename Stellarvideo!',
+            description: 'Der Login FÃ¼r Codename Stellarvideo!',
             buttonText: 'Zur Stellarvideo Alpha!',
             buttonLink: 'stellarvideo/',
             imgStyles: { width: '65px', height: '65px' },
@@ -124,7 +125,7 @@ $(document).ready(function() {
             imgSrc: 'https://download.scamcraft.net/img/rickrollblocker.png',
             imgAlt: 'Rickrollblocker',
             title: 'Rickrollblocker',
-            description: 'Er blockiert jeden Rickroll 100% unzuverlässig!',
+            description: 'Er blockiert jeden Rickroll 100% unzuverlÃ¤ssig!',
             buttonText: 'Leider Gratgesperrt! (Gratsperre.virus)',
             disabled: true,
             showButton: true,
@@ -142,7 +143,7 @@ $(document).ready(function() {
             imgSrc: 'https://download.scamcraft.net/img/product-keys.png',
             imgAlt: 'Product Keys',
             title: 'Product Keys',
-            description: 'Der Product Key für Das Beste Betriebsystem Winwows!',
+            description: 'Der Product Key fÃ¼r Das Beste Betriebsystem Winwows!',
             buttonText: 'GEBEN GLATIS!!',
             buttonAction: () => alert('KEINE GLATIS KEY HIER!!!'),
             imgStyles: { width: '50px', height: '50px' },
@@ -152,7 +153,7 @@ $(document).ready(function() {
             imgSrc: 'https://download.scamcraft.net/img/jakobsoft-router.png',
             imgAlt: 'Moden',
             title: 'Moden',
-            description: 'Jakobsoft J-5894 DFÜ Moden!',
+            description: 'Jakobsoft J-5894 DFÃœ Moden!',
             buttonText: 'Leider Gratgesperrt! (Gratsperre.virus)',
             disabled: true,
             showButton: true,
@@ -182,7 +183,7 @@ $(document).ready(function() {
             imgSrc: 'https://download.scamcraft.net/img/timemachine.png',
             imgAlt: 'Timemachine',
             title: 'Stadtunordnung',
-            description: 'Stadtordnung? NÖ! Stadtunordnung: JÖ!',
+            description: 'Stadtordnung? NÃ–! Stadtunordnung: JÃ–!',
             buttonText: 'Anzeigen!',
             buttonLink: 'timemachine/stadtunordnung',
             showButton: true,
@@ -215,7 +216,7 @@ $(document).ready(function() {
             imgSrc: 'https://download.scamcraft.net/img/404.png',
             imgAlt: 'Snake',
             title: 'Snake',
-            description: 'Ein simples Spiel, dessen Ziel es ist, so viele Punkte wie möglich einzusammeln. (IST HALT SNAKE!)',
+            description: 'Ein simples Spiel, dessen Ziel es ist, so viele Punkte wie mÃ¶glich einzusammeln. (IST HALT SNAKE!)',
             buttonText: 'ICH WILL SCHLANGE!',
             buttonLink: 'gratspiel.virus/snake',
             showButton: true,
@@ -224,7 +225,7 @@ $(document).ready(function() {
             imgSrc: 'https://download.scamcraft.net/img/404.png',
             imgAlt: 'Guess the Number',
             title: 'Guess the Number',
-            description: 'Ein simples Spiel, dessen Ziel es ist, so viele Punkte wie möglich einzusammeln.',
+            description: 'Ein simples Spiel, dessen Ziel es ist, so viele Punkte wie mÃ¶glich einzusammeln.',
             buttonText: 'ICH WILL SCHLANGE!',
             buttonLink: 'gratspiel.virus/number',
             showButton: true,
@@ -242,7 +243,7 @@ $(document).ready(function() {
         {
             imgSrc: 'https://download.scamcraft.net/img/bedwars/2.png',
             imgAlt: 'Bedwars',
-            title: 'Die Erste MÜLLBASE!',
+            title: 'Die Erste MÃœLLBASE!',
             imgStyles: { width: '480px', height: '270px' },
             showButton: false,
         },
@@ -256,7 +257,7 @@ $(document).ready(function() {
         {
             imgSrc: 'https://download.scamcraft.net/img/bedwars/4.png',
             imgAlt: 'Bedwars',
-            title: 'Die Erste Müllbase',
+            title: 'Die Erste MÃ¼llbase',
             imgStyles: { width: '480px', height: '270px' },
             showButton: false,
         },
@@ -270,7 +271,7 @@ $(document).ready(function() {
         {
             imgSrc: 'https://download.scamcraft.net/img/bedwars/6.png',
             imgAlt: 'Bedwars',
-            title: 'Der Müllchamber (Besser)!',
+            title: 'Der MÃ¼llchamber (Besser)!',
             imgStyles: { width: '480px', height: '270px' },
             showButton: false,
         },
@@ -303,12 +304,11 @@ $(document).ready(function() {
             showButton: false,
         }
     ];
-
+    
     let currentSections = SectionsMain;
 
     const $mainContent = $('#main-content');
 
-    // Function to render sections
     function renderSections(sections) {
         $mainContent.empty(); // Clear existing content
 
@@ -318,7 +318,6 @@ $(document).ready(function() {
             const $imgElement = $('<img>');
             $imgElement.attr('src', section.imgSrc);
             $imgElement.attr('alt', section.imgAlt);
-            // Apply image styles from the section object
             if (section.imgStyles) {
                 $imgElement.css(section.imgStyles);
             }
@@ -338,7 +337,7 @@ $(document).ready(function() {
                 if (section.disabled) {
                     $buttonElement.prop('disabled', true);
                 } else if (section.buttonAction) {
-                    $buttonElement.click(section.buttonAction); // Execute JavaScript function
+                    $buttonElement.click(section.buttonAction);
                 } else {
                     $buttonElement.click(() => {
                         window.location.href = section.buttonLink;
@@ -352,62 +351,5 @@ $(document).ready(function() {
         });
     }
 
-    // Initial render
     renderSections(currentSections);
-});
-
-$(window).on('load', function() {
-    var currentYear = new Date().getFullYear();
-    $('#copyright-year').text(currentYear);
-    $('#site-name-version').text("Codename Kapselordnung Release v1.9 -> R2");
-});
-
-// DOM Elements
-
-const $darkButton = $('#dark');
-const $lightButton = $('#light');
-const $solarButton = $('#solar');
-const $body = $('body');
-
-// Apply the cached theme on reload
-
-const theme = localStorage.getItem('theme');
-const isSolar = localStorage.getItem('isSolar');
-
-if (theme) {
-    $body.addClass(theme);
-    if (isSolar) {
-        $body.addClass('solar');
-        $solarButton.text("normalize");
-        $solarButton.css('--bg-solar', 'white');
-    }
-} else {
-    $body.addClass('light');
-    localStorage.setItem('theme', 'light');
-}
-
-// Button Event Handlers
-
-$darkButton.on('click', () => {
-    $body.removeClass('light').addClass('dark');
-    localStorage.setItem('theme', 'dark');
-});
-
-$lightButton.on('click', () => {
-    $body.removeClass('dark').addClass('light');
-    localStorage.setItem('theme', 'light');
-});
-
-$solarButton.on('click', () => {
-    if ($body.hasClass('solar')) {
-        $body.removeClass('solar');
-        $solarButton.css('--bg-solar', 'var(--yellow)');
-        $solarButton.text('solarize');
-        localStorage.removeItem('isSolar');
-    } else {
-        $solarButton.css('--bg-solar', 'white');
-        $body.addClass('solar');
-        $solarButton.text('normalize');
-        localStorage.setItem('isSolar', true);
-    }
 });

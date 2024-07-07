@@ -1,0 +1,27 @@
+button:hover {
+    background: linear-gradient(135deg, #5a7dfa, #9462e1); /* Darker gradient on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+button:active {
+    background: linear-gradient(135deg, #4a6bd1, #8254d2); /* Even darker gradient when active */
+    transform: translateY(0); /* Reset lift effect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Reduce shadow on click */
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1); /* Outline for accessibility */
+}
+button {
+    background: linear-gradient(135deg, #6e8efb, #a777e3); /* Gradient background */
+    color: #fff;
+    padding: 10px 20px; /* Adjust padding for better touch targets */
+    border: none;
+    cursor: pointer;
+    border-radius: 8px; /* Rounded corners */
+    font-size: 16px; /* Adjust font size for better readability */
+    font-weight: 600; /* Slightly bolder text */
+    transition: background 0.3s ease, transform 0.2s ease; /* Smooth transition for background and transform */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}

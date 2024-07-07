@@ -1,0 +1,12 @@
+section img {
+    max-width: 100%; /* Ensure the image doesn't exceed its original width */
+    margin-right: 15px;
+    margin-bottom: 15px; /* Add bottom margin to separate image and text */
+}
+section img {
+    width: 75px;
+    height: 75px;
+}
+section {
+    margin-bottom: 20px;
+}

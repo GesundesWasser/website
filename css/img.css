@@ -1,0 +1,10 @@
+img {
+    margin: 2em 0 0;
+    width: 525px;
+    height: 250px;
+}
+main img {
+    max-width: 80px;
+    margin-right: 15px;
+    vertical-align: middle; /* Align the image vertically */
+}
