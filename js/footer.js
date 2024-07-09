@@ -5,9 +5,9 @@ function loadFooter() {
     $(document).ready(function() {
         // Set the Codename, version, revision, test build, and copyright year
         const CODENAME = "Kapselordnung";
-        const VERSION = "v1.9";
+        const VERSION = "v1.10";
         const REVISION = "0";
-        const TEST_BUILD = true;
+        const TEST_BUILD = false;
         const TEST_BUILD_MSG = TEST_BUILD ? "This version of Codename " + CODENAME + " also looks Experimental!" : "";
         $('#site-name-version').text("Codename " + CODENAME + " " + VERSION + " -> R" + REVISION);
         $('#testbuild').text(TEST_BUILD_MSG);
