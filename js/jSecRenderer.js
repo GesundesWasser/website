@@ -1,6 +1,6 @@
 "use strict";
 console.log("[jSec] Starting...");
-
+import $ from 'jquery';
 const jSecRenderer = (function() {
     // Private variables
     let currentSections = [];
