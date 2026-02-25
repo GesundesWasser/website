@@ -3,15 +3,24 @@ import $ from 'jquery';
 // Function to initialize header
 function loadFooter() {
     $(document).ready(function() {
-        // Set the Codename, version, revision, test build, and copyright year
-        const CODENAME = "Kapselordnung";
-        const VERSION = "v1.10";
+        const CODENAME = "krdb.info";
+        const VERSION = "v1.0";
         const REVISION = "0";
         const TEST_BUILD = false;
-        const TEST_BUILD_MSG = TEST_BUILD ? "This version of Codename " + CODENAME + " also looks Experimental!" : "";
-        $('#site-name-version').text("Codename " + CODENAME + " " + VERSION + " -> R" + REVISION);
+        const TEST_BUILD_MSG = TEST_BUILD 
+            ? "This version of " + CODENAME + " also looks Experimental!" 
+            : "";
+
+        const START_YEAR = 2026;
+        const currentYear = new Date().getFullYear();
+
+        $('#site-name-version').text(CODENAME + " " + VERSION + " -> R" + REVISION);
         $('#testbuild').text(TEST_BUILD_MSG);
-        $('#copyright-year').text("2024 -> " + new Date().getFullYear());
+        if (currentYear === START_YEAR) {
+            $('#copyright-year').text(START_YEAR.toString());
+        } else {
+            $('#copyright-year').text(START_YEAR + " -> " + currentYear);
+        }
     });
 }
 

@@ -15,4 +15,4 @@ import loadFooter from './footer.js';
 loadTheme();
 loadHeader();
 loadFooter();
-console.log("[mcdonelts.city] Successfully loaded all Scripts!");
+console.log("[krdb.info] Successfully loaded all Scripts!");

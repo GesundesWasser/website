@@ -127,7 +127,7 @@ const jSecRenderer = (function() {
         },
         initialize: function(sections, label) {
             currentSections = sections;
-            currentLabel = label || 'Posts';
+            currentLabel = label || 'Die neuesten nachrichten aus Bulettien';
             renderBlogList(currentSections, currentLabel);
         }
     };
