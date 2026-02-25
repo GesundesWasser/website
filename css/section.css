@@ -226,8 +226,6 @@ main {
     opacity: 0.35;
     cursor: not-allowed;
 }
-    font-weight: 600;
-}
 
 /* ── Post Card ─────────────────────────────────────── */
 .blog-card {
