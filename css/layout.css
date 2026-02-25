@@ -29,8 +29,8 @@ header {
     overflow: hidden;
 }
 
-headertext {
-    color: green;
+.headertext {
+    color: #000000;
 }
 header::before {
     content: "";
