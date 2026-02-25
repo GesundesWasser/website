@@ -1,73 +1,134 @@
 "use strict";
 console.log("[jSec] Starting...");
 import $ from 'jquery';
+
 const jSecRenderer = (function() {
-    // Private variables
     let currentSections = [];
-    const $mainContent = $('#main-content'); // Ensure jQuery is available
+    let currentLabel = 'Posts';
+    const $mainContent = $('#main-content');
 
-    function renderSections(sections) {
-        $mainContent.empty(); // Clear existing content
+    // Render blog card list
+    function renderBlogList(sections, label) {
+        $mainContent.empty();
 
-        sections.forEach((section) => {
-            const $sectionElement = $('<section></section>');
+        const $feed = $('<div class="blog-feed"></div>');
+        const $feedLabel = $('<h2 class="feed-label"></h2>').text(label || 'Posts');
+        $feed.append($feedLabel);
 
-            const $imgElement = $('<img>');
-            $imgElement.attr('src', section.imgSrc);
-            $imgElement.attr('alt', section.imgAlt);
-            if (section.imgStyles) {
-                $imgElement.css(section.imgStyles);
+        sections.forEach((section, index) => {
+            const $card = $('<article class="blog-card"></article>');
+            const $body = $('<div class="blog-card-body"></div>');
+
+            if (section.date) {
+                $body.append($('<time class="blog-card-date"></time>').text(section.date));
             }
-            $sectionElement.append($imgElement);
 
             if (section.title) {
-                const $titleElement = $('<h2></h2>').text(section.title);
-                $sectionElement.append($titleElement);
+                const $title = $('<h3 class="blog-card-title"></h3>').text(section.title);
+                $body.append($title);
             }
 
-            const $descriptionElement = $('<p></p>').text(section.description);
-            $sectionElement.append($descriptionElement);
-
-            if (section.showButton) {
-                const $buttonElement = $('<button></button>').text(section.buttonText);
-
-                if (section.disabled) {
-                    $buttonElement.prop('disabled', true);
-                } else if (section.buttonAction) {
-                    $buttonElement.click(section.buttonAction);
-                } else if (section.buttonLink) {
-                    $buttonElement.click(() => {
-                        window.location.href = section.buttonLink;
-                    });
-                }
-
-                $sectionElement.append($buttonElement);
+            if (section.description) {
+                const excerpt = section.description.length > 160
+                    ? section.description.slice(0, 160).trimEnd() + '…'
+                    : section.description;
+                $body.append($('<p class="blog-card-excerpt"></p>').text(excerpt));
             }
 
-            $mainContent.append($sectionElement);
+            // Bottom row: thumbnail + read more button
+            const $bottom = $('<div class="blog-card-bottom"></div>');
+
+            if (section.imgSrc) {
+                const $thumb = $('<img class="blog-card-thumb">');
+                $thumb.attr('src', section.imgSrc);
+                $thumb.attr('alt', section.imgAlt || '');
+                $bottom.append($thumb);
+            }
+
+            const $readMore = $('<a class="blog-read-more" href="#">Read more →</a>');
+            $readMore.on('click', (e) => {
+                e.preventDefault();
+                renderArticle(section, sections, label);
+            });
+            $bottom.append($readMore);
+
+            $body.append($bottom);
+            $card.append($body);
+            $feed.append($card);
         });
 
-        $('html, body').animate({ scrollTop: 0 }, 'slow'); // Scroll to the top when a page is rendered
-        console.log("[jSec] Done! Page loaded.");
+        $mainContent.append($feed);
+        $('html, body').animate({ scrollTop: 0 }, 'fast');
+        console.log("[jSec] Blog list rendered.");
+    }
+
+    // Render a single article
+    function renderArticle(section, sections, label) {
+        $mainContent.empty();
+
+        const $article = $('<article class="blog-article"></article>');
+
+        // Back button
+        const $back = $('<button class="blog-back-btn">← Back</button>');
+        $back.on('click', () => renderBlogList(sections, label));
+        $article.append($back);
+
+        if (section.imgSrc) {
+            const $hero = $('<img class="blog-article-hero">');
+            $hero.attr('src', section.imgSrc);
+            $hero.attr('alt', section.imgAlt || '');
+            $article.append($hero);
+        }
+
+        if (section.date) {
+            $article.append($('<time class="blog-article-date"></time>').text(section.date));
+        }
+
+        if (section.title) {
+            $article.append($('<h1 class="blog-article-title"></h1>').text(section.title));
+        }
+
+        const $divider = $('<hr class="blog-article-divider">');
+        $article.append($divider);
+
+        if (section.description) {
+            // Split on double-newline to support paragraphs
+            const paragraphs = section.description.split(/\n\n+/);
+            const $content = $('<div class="blog-article-content"></div>');
+            paragraphs.forEach(para => {
+                $content.append($('<p></p>').text(para));
+            });
+            $article.append($content);
+        }
+
+        // Action button (download, link, etc.) if present
+        if (section.showButton && section.buttonText) {
+            const $btn = $('<button class="blog-action-btn"></button>').text(section.buttonText);
+            if (section.disabled) {
+                $btn.prop('disabled', true);
+            } else if (section.buttonAction) {
+                $btn.on('click', section.buttonAction);
+            } else if (section.buttonLink) {
+                $btn.on('click', () => { window.location.href = section.buttonLink; });
+            }
+            $article.append($btn);
+        }
+
+        $mainContent.append($article);
+        $('html, body').animate({ scrollTop: 0 }, 'fast');
+        console.log("[jSec] Article rendered.");
     }
 
     return {
-        /**
-         * Sets the sections to be rendered and calls the render function.
-         * @param {Array} sections - Array of section objects to render.
-         */
-        setSections: function(sections) {
+        setSections: function(sections, label) {
             currentSections = sections;
-            renderSections(currentSections);
+            currentLabel = label || 'Posts';
+            renderBlogList(currentSections, currentLabel);
         },
-
-        /**
-         * Initializes the renderer with the given sections.
-         * @param {Array} sections - Array of section objects to render initially.
-         */
-        initialize: function(sections) {
+        initialize: function(sections, label) {
             currentSections = sections;
-            renderSections(currentSections);
+            currentLabel = label || 'Posts';
+            renderBlogList(currentSections, currentLabel);
         }
     };
 })();

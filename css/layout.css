@@ -1,15 +1,18 @@
 .navbar a {
-    color: #FFF;
+    color: var(--gray2);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 .navbar a:hover {
-    color: #FFD700;
+    color: var(--gray0);
 }
 footer {
     padding: 20px;
 }
 main {
     min-height: 1px;
-    padding: 2rem;
 }
 body {
     margin: 0;
@@ -29,27 +32,41 @@ header {
     overflow: hidden;
 }
 
+header h1 {
+    margin: 0;
+}
+
 .headertext {
     color: #000000;
 }
+
 header::before {
     content: "";
     position: absolute;
     inset: 0;
     background: url("img/6.png") center/cover no-repeat;
     filter: blur(5px);
-    transform: scale(1.1); /* prevents blur edge cutoff */
+    transform: scale(1.1);
     z-index: -1;
 }
+
+.site-tagline {
+    display: none;
+}
 .navbar {
-    height: 70px;
     width: 100%;
-    background: var(--bg-nav);
+    background: transparent;
+    border-bottom: 1px solid var(--gray4);
     color: var(--text);
+}
+.navbar-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
 }
 .navbar-nav {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    height: 100%;
+    gap: 2rem;
+    height: 52px;
 }
