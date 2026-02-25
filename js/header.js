@@ -2,8 +2,8 @@
 import $ from 'jquery';
 function loadHeader() {
     $(document).ready(function() {
-        $('#header-text').text(window.location.hostname);
-        $('.logo').attr('src', 'https://download.scamcraft.net/img/wwagoinc.png');
+        $('#header-text').text("KRDB.INFO");//window.location.hostname);
+        $('.logo').attr('src', 'img/logo.png');
         $('#logo-link').attr('href', 'javascript:');
     });
 }

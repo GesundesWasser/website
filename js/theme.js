@@ -19,8 +19,8 @@ function loadTheme() {
                 $solarButton.css('--bg-solar', 'white');
             }
         } else {
-            $body.addClass('light');
-            localStorage.setItem('theme', 'light');
+            $body.addClass('dark');
+            localStorage.setItem('theme', 'dark');
         }
 
         $darkButton.on('click', () => {

@@ -3,104 +3,102 @@ import jSecRenderer from './jSecRenderer.js';
 
 const SectionsMain = [
     {
-        imgSrc: 'https://download.scamcraft.net/img/jakobsoftlogo-ohne-schrift.png',
+        imgSrc: 'https://download.scamcraft.net/img/404.png',
         imgAlt: 'Jakobsoft',
-        title: 'Jakobsoft',
-        description: 'Jakobsoft Software Provider',
-        buttonText: 'Zur Jakobsoft Seite!',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing',
+        description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+        buttonText: 'Lorem ipsum',
         buttonAction: () => {
             jSecRenderer.setSections(SectionsJakobsoft);
         },
-        imgStyles: { width: '50px', height: '65px' },
         showButton: true,
     },
     {
-        imgSrc: 'https://download.scamcraft.net/img/timemachine.png',
-        imgAlt: 'Time Machine',
-        title: 'Time Machine',
-        description: 'Die Zeitmaschine bringt dich zu jedem Codename Zurück!',
-        buttonText: 'Du Geben Zeitmaschine!',
+        imgSrc: 'https://download.scamcraft.net/img/404.png',
+        imgAlt: 'Jakobsoft',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing',
+        description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+        buttonText: 'Lorem ipsum',
         buttonAction: () => {
-            jSecRenderer.setSections(SectionsTimemachine);
+            jSecRenderer.setSections(SectionsJakobsoft);
         },
-        imgStyles: { width: '65px', height: '65px' },
         showButton: true,
     },
     {
-        imgSrc: 'https://download.scamcraft.net/img/seatables.png',
-        imgAlt: 'Seatables',
-        title: '',
-        description: 'Die BESTEN Sitze der WELT! (Made in China!)',
-        buttonText: 'Ich Kaufe!',
+        imgSrc: 'https://download.scamcraft.net/img/404.png',
+        imgAlt: 'Jakobsoft',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing',
+        description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+        buttonText: 'Lorem ipsum',
         buttonAction: () => {
-            jSecRenderer.setSections(SectionsSeatables);
+            jSecRenderer.setSections(SectionsJakobsoft);
         },
-        imgStyles: { width: '65px', height: '65px' },
         showButton: true,
     },
     {
-        imgSrc: 'https://download.scamcraft.net/img/gratspiel-logo.png',
-        imgAlt: 'Gratspiel.Virus',
-        title: '',
-        description: 'Die Besten Vir- Ähhh Spiele!',
-        buttonText: 'Zur Gratspiel Seite!',
+        imgSrc: 'https://download.scamcraft.net/img/404.png',
+        imgAlt: 'Jakobsoft',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing',
+        description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+        buttonText: 'Lorem ipsum',
         buttonAction: () => {
-            jSecRenderer.setSections(SectionsGratspiel);
+            jSecRenderer.setSections(SectionsJakobsoft);
         },
-        imgStyles: { width: '130px', height: '65px' },
         showButton: true,
     },
     {
-        imgSrc: 'https://download.scamcraft.net/img/minecraft.png',
-        imgAlt: 'Minecraft',
-        title: 'Minecraft',
-        description: 'Die Besten Basen, Deathchamber und Müllchamber!',
-        buttonText: 'Anzeigen',
-        buttonLink: 'minecraft',
+        imgSrc: 'https://download.scamcraft.net/img/404.png',
+        imgAlt: 'Jakobsoft',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing',
+        description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+        buttonText: 'Lorem ipsum',
         buttonAction: () => {
-            jSecRenderer.setSections(SectionsMinecraft);_
+            jSecRenderer.setSections(SectionsJakobsoft);
         },
-        imgStyles: { width: '50px', height: '65px' },
         showButton: true,
     },
     {
-        imgSrc: 'https://download.scamcraft.net/img/book.png',
-        imgAlt: 'Stadtordnung',
-        title: 'Stadtordnung',
-        description: 'Die Stadtordnung von MCDONELTS CITY (Die ist fürs Klo!)',
-        buttonText: 'Leider Gratgesperrt! (Gratsperre.virus)',
-        disabled: true,
-        imgStyles: { width: '65px', height: '65px' },
+        imgSrc: 'https://download.scamcraft.net/img/404.png',
+        imgAlt: 'Jakobsoft',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing',
+        description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+        buttonText: 'Lorem ipsum',
+        buttonAction: () => {
+            jSecRenderer.setSections(SectionsJakobsoft);
+        },
         showButton: true,
     },
     {
-        imgSrc: 'https://download.scamcraft.net/img/codename-kapsel-security.png',
-        imgAlt: 'Codename Kapselsecurity',
-        title: 'Codename Kapselsecurity',
-        description: 'Der Login Für Codename Kapselsecurity!',
-        buttonText: 'Zur Kapselsecurity Alpha!',
-        buttonLink: 'accounts/',
-        imgStyles: { width: '65px', height: '65px' },
+        imgSrc: 'https://download.scamcraft.net/img/404.png',
+        imgAlt: 'Jakobsoft',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing',
+        description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+        buttonText: 'Lorem ipsum',
+        buttonAction: () => {
+            jSecRenderer.setSections(SectionsJakobsoft);
+        },
         showButton: true,
     },
     {
-        imgSrc: 'https://download.scamcraft.net/img/scamcraft-logo.png',
-        imgAlt: 'SCAMCRAFT',
-        title: 'SCAMCRAFT.NET',
-        description: 'Der Beste Server Der Welt.',
-        buttonText: 'Leider Gratgesperrt! (Gratsperre.virus)',
-        disabled: true,
-        imgStyles: { width: '65px', height: '65px' },
+        imgSrc: 'https://download.scamcraft.net/img/404.png',
+        imgAlt: 'Jakobsoft',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing',
+        description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+        buttonText: 'Lorem ipsum',
+        buttonAction: () => {
+            jSecRenderer.setSections(SectionsJakobsoft);
+        },
         showButton: true,
     },
     {
-        imgSrc: 'https://download.scamcraft.net/img/stellar.png',
-        imgAlt: 'Codename Stellarvideo',
-        title: 'Codename Stellarvideo',
-        description: 'Der Login Für Codename Stellarvideo!',
-        buttonText: 'Zur Stellarvideo Alpha!',
-        buttonLink: 'stellarvideo/',
-        imgStyles: { width: '65px', height: '65px' },
+        imgSrc: 'https://download.scamcraft.net/img/404.png',
+        imgAlt: 'Jakobsoft',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing',
+        description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+        buttonText: 'Lorem ipsum',
+        buttonAction: () => {
+            jSecRenderer.setSections(SectionsJakobsoft);
+        },
         showButton: true,
     }
 ];
@@ -111,7 +109,7 @@ const SectionsJakobsoft = [
         imgSrc: '',
         imgAlt: '',
         title: 'Codename Winwows',
-        description: 'Jakobsoft Codename Winwows Installer',
+        description: 'Jakobsoft ',
         buttonText: 'Winwows Installer DOWNLOAD!',
         buttonAction: () => alert('Download Fehlgeschlagen :('),
         showButton: true,
