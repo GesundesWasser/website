@@ -45,7 +45,7 @@ const jSecRenderer = (function() {
                 $bottom.append($thumb);
             }
 
-            const $readMore = $('<a class="blog-read-more" href="#">Read more →</a>');
+            const $readMore = $('<a class="blog-read-more" href="#">Weiterlesen →</a>');
             $readMore.on('click', (e) => {
                 e.preventDefault();
                 renderArticle(section, sections, label);
@@ -69,7 +69,7 @@ const jSecRenderer = (function() {
         const $article = $('<article class="blog-article"></article>');
 
         // Back button
-        const $back = $('<button class="blog-back-btn">← Back</button>');
+        const $back = $('<button class="blog-back-btn">← Zurück</button>');
         $back.on('click', () => renderBlogList(sections, label));
         $article.append($back);
 
