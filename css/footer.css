@@ -10,3 +10,15 @@
 .footer p {
     margin: 5px; /* Actually make the Text readable */
 }
+/* ── Mobile Footer ─────────────────────────────────── */
+@media (max-width: 600px) {
+    .footer {
+        padding: 16px 1rem;
+        text-align: center;
+    }
+
+    .footer p {
+        font-size: 0.8rem;
+        word-break: break-word;
+    }
+}

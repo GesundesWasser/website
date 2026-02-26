@@ -70,3 +70,27 @@ header::before {
     gap: 2rem;
     height: 52px;
 }
+/* ── Mobile Layout ─────────────────────────────────── */
+@media (max-width: 600px) {
+    header {
+        padding: 0.75em 1em;
+        padding-bottom: 2.5em;
+        /* Simplify clip-path for small screens so it doesn't over-crop */
+        clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
+    }
+
+    header h1 {
+        font-size: 1.2rem;
+    }
+
+    .navbar-inner {
+        padding: 0 0.75rem;
+    }
+
+    .navbar-nav {
+        gap: 1rem;
+        height: 44px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
