@@ -19,8 +19,15 @@ const jSecRenderer = (function() {
             const $card = $('<article class="blog-card"></article>');
             const $body = $('<div class="blog-card-body"></div>');
 
+            const $meta = $('<div class="blog-card-meta"></div>');
             if (section.date) {
-                $body.append($('<time class="blog-card-date"></time>').text(section.date));
+                $meta.append($('<time class="blog-card-date"></time>').text(section.date));
+            }
+            if (section.author) {
+                $meta.append($('<span class="blog-card-author"></span>').text(section.author));
+            }
+            if (section.date || section.author) {
+                $body.append($meta);
             }
 
             if (section.title) {
@@ -80,8 +87,15 @@ const jSecRenderer = (function() {
             $article.append($hero);
         }
 
+        const $articleMeta = $('<div class="blog-article-meta"></div>');
         if (section.date) {
-            $article.append($('<time class="blog-article-date"></time>').text(section.date));
+            $articleMeta.append($('<time class="blog-article-date"></time>').text(section.date));
+        }
+        if (section.author) {
+            $articleMeta.append($('<span class="blog-article-author"></span>').text(section.author));
+        }
+        if (section.date || section.author) {
+            $article.append($articleMeta);
         }
 
         if (section.title) {
