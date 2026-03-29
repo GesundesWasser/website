@@ -4,12 +4,16 @@ import $ from 'jquery';
 function loadFooter() {
     $(document).ready(function() {
         // Set the Codename, version, revision, test build, and copyright year
-        const CODENAME = "Kapselordnung";
-        const VERSION = "v1.10";
-        const REVISION = "0";
-        const TEST_BUILD = false;
+        const CODENAME = "Permanent Release Candidate";
+        const VERSION = __GIT_HASH__;
+        let TEST_BUILD;
+        if (window.location.hostname !== "mcdonelts.city") {
+            TEST_BUILD = true;
+        } else {
+            TEST_BUILD = false;
+        }
         const TEST_BUILD_MSG = TEST_BUILD ? "This version of Codename " + CODENAME + " also looks Experimental!" : "";
-        $('#site-name-version').text("Codename " + CODENAME + " " + VERSION + " -> R" + REVISION);
+        $('#site-name-version').text(CODENAME + " (Git Commit: " + VERSION + ")");
         $('#testbuild').text(TEST_BUILD_MSG);
         $('#copyright-year').text("2024 -> " + new Date().getFullYear());
     });
