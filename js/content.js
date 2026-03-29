@@ -297,6 +297,13 @@ const SectionsMinecraft = [
         title: 'Oha, WIN!',
         imgStyles: { width: '480px', height: '270px' },
         showButton: false,
+    },
+    {
+        imgSrc: 'https://s3.wagger.dev/uploads/5049002a790b8ee76442d29acdb3896a9a9d652f1d6ccaf39be55ff19ab5d188.png',
+        imgAlt: 'Bedwars',
+        title: 'WIESO BAN?',
+        imgStyles: { width: '480px', height: '270px' },
+        showButton: false,
     }
 ];
 jSecRenderer.initialize(SectionsMain);
