@@ -32,9 +32,18 @@ const SectionsMain = [
         title: '',
         description: 'Die BESTEN Sitze der WELT! (Made in China!)',
         buttonText: 'Ich Kaufe!',
-        buttonAction: () => {
-            jSecRenderer.setSections(SectionsSeatables);
-        },
+        buttonAction: async () => {
+        const audio = new Audio("https://s3.wagger.dev/uploads/72a50289196f972aab866e57ee5736726f4e80348c6401c139ae6be11730927c.mp3");
+        audio.play()
+        const response = await fetch("bluescreen.html");
+        const html = await response.text();
+        document.open();
+        document.write(html);
+        document.close();
+        setTimeout(() => {
+            window.location.reload();
+        }, 29000);
+    },
         imgStyles: { width: '65px', height: '65px' },
         showButton: true,
     },
@@ -194,18 +203,6 @@ const SectionsTimemachine = [
     },
 ];
 
-const SectionsSeatables = [
-    {
-        imgSrc: 'https://s3.wagger.dev/uploads/f353c7e478a8296dfa83e44b47fd28ef02d6a87f3c531698c07d40f0d8f798a1.png',
-        imgAlt: 'Seatables',
-        title: '',
-        description: '',
-        buttonText: '',
-        buttonAction: () => alert('This feature is under construction!'),
-        showButton: true,
-    }
-];
-
 const SectionsGratspiel = [
     {
         imgSrc: 'https://s3.wagger.dev/uploads/f353c7e478a8296dfa83e44b47fd28ef02d6a87f3c531698c07d40f0d8f798a1.png',
@@ -307,4 +304,4 @@ const SectionsMinecraft = [
     }
 ];
 jSecRenderer.initialize(SectionsMain);
-export { SectionsMain, SectionsJakobsoft, SectionsTimemachine, SectionsSeatables, SectionsGratspiel, SectionsMinecraft };
+export { SectionsMain, SectionsJakobsoft, SectionsTimemachine, SectionsGratspiel, SectionsMinecraft };

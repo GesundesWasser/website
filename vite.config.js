@@ -17,6 +17,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
+        bluescreen: resolve(__dirname, 'bluescreen.html'),
         guess_the_numver: resolve(__dirname, 'gratspiel.virus/guess-the-number/index.html'),
         snake: resolve(__dirname, 'gratspiel.virus/snake/index.html')
       }
