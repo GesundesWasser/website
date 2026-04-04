@@ -1,3 +1,6 @@
 [submodule "gratspiel.virus"]
 	path = gratspiel.virus
 	url = https://github.com/GesundesWasser/gratspiel.virus
+[submodule "test"]
+	path = test
+	url = https://github.com/GesundesWasser/test
