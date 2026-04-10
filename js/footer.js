@@ -7,7 +7,7 @@ function loadFooter() {
         const CODENAME = "Permanent Release Candidate";
         const VERSION = __GIT_HASH__;
         let TEST_BUILD;
-        if (window.location.hostname !== "mcdonelts.city") {
+        if (window.location.hostname === "localhost") {
             TEST_BUILD = true;
         } else {
             TEST_BUILD = false;
