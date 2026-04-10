@@ -17,3 +17,9 @@ loadTheme();
 loadHeader();
 loadFooter();
 console.log("[mcdonelts.city] Successfully loaded all Scripts!");
+
+document.querySelectorAll(".reloadwindow").forEach(el => {
+  el.addEventListener("click", () => {
+    window.location.reload();
+  });
+});
